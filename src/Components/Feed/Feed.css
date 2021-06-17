@@ -1,1 +1,122 @@
-/* No CSS *//*# sourceMappingURL=Feed.css.map */
+.feedContainer {
+  margin-top: 50px;
+  padding-top: 2rem;
+  /* Modal */
+}
+
+.feedContainer .imgRow {
+  margin: auto;
+  grid-gap: 3rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.feedContainer .imgRow .col {
+  position: relative;
+  padding: 0;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.feedContainer .imgRow .col .imagPanel img {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 150px;
+}
+
+.feedContainer .imgRow .col .imagPanel:hover .hoverText {
+  display: block;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.feedContainer .imgRow .col .hoverText {
+  position: absolute;
+  background-color: #3634327e;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.feedContainer .imgRow .col .hoverText .tag {
+  color: white;
+  top: 10%;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+}
+
+.feedContainer .imgRow .col .hoverText .buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.feedContainer .imgRow .col .hoverText .buttons p,
+.feedContainer .imgRow .col .hoverText .buttons button {
+  margin: 1rem;
+  border: none;
+  background-color: unset;
+  color: white;
+  z-index: 1000;
+}
+
+.feedContainer .imgRow .col .hoverText .buttons p:hover,
+.feedContainer .imgRow .col .hoverText .buttons button:hover {
+  color: #f17f73;
+}
+
+.feedContainer .modalContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.689);
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+.feedContainer .modalContainer .clsBtn {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 2rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+.feedContainer .modalContainer .clsBtn:hover {
+  color: #f17f73;
+}
+
+.feedContainer .modalContainer .imageModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: white;
+  width: 60%;
+  height: 60%;
+}
+/*# sourceMappingURL=Feed.css.map */

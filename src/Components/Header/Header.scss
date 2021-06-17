@@ -1,0 +1,73 @@
+@import "../../color";
+
+.navbar {
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 50px;
+  padding: 0 1rem;
+  border-bottom: 0.1rem groove lightgray;
+  background-color: $light;
+  /* header */
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    h1 {
+      font-family: "Dancing Script", cursive;
+      a {
+        text-decoration: none;
+        color: $baseColor;
+      }
+    }
+    .linkItem {
+      text-decoration: none;
+      padding: 1rem;
+      color: $baseColor;
+      font-size: 1.5rem;
+    }
+    .likes {
+      color: $accent2;
+    }
+  }
+  /* search */
+  .searchForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    .form-group {
+      width: 100%;
+      .form-control {
+        border: 0.1rem solid black;
+        background-color: $white;
+        outline: none;
+        -webkit-appearance: button;
+        border-radius: unset;
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+        &:active {
+          outline: none;
+          box-shadow: none;
+        }
+        &:-internal-autofill-selected {
+          background-color: transparent;
+        }
+      }
+    }
+    .searchBtn {
+      border-radius: unset;
+      background-color: $white;
+      border: 0.1rem solid black;
+      color: black;
+      &:hover,
+      &:focus {
+        background-color: $white;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
