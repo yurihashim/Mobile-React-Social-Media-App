@@ -10,6 +10,7 @@ import Main from "./Components/Main/Main";
 import Feed from "./Components/Feed/Feed";
 import ScrollToTop from "./Components/Router/ScrollToTop";
 import {FeedProvider} from "./Contexts/FeedContext"
+import Post from "./Components/Post/Post"; 
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
               <Route exact path="/home" component={Main} />
               <Route exact path="/feed" component={Feed} />
               <Route exact path="/likes" />
-              <Route exact path="/post" />
+              <Route exact path="/post" component={Post}/>
               <Route exact path="/login" />
             </Switch>
             {/* Footer */}
