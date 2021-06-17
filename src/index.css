@@ -1,1 +1,15 @@
-/* No CSS *//*# sourceMappingURL=index.css.map */
+body {
+  font-family: "Arimo", sans-serif;
+  color: #363432;
+}
+
+#root {
+  font-family: "Arimo", sans-serif;
+  color: #363432;
+}
+
+a {
+  text-decoration: none;
+  color: #363432;
+}
+/*# sourceMappingURL=index.css.map */

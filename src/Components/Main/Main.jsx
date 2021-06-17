@@ -1,6 +1,7 @@
 import React from 'react';
-import Feed from '../Feed/Feed';
 import "./Main.css";
+import Feed from '../Feed/Feed';
+import Header from '../Header/Header';
 
 // This is our Parent Component
 
@@ -8,7 +9,7 @@ const Main = () => {
   return (
     <>
       {/* Header Component */}
-
+      <Header />
       {/* Feed -- default component */}
       <Feed />
       {/* Footer component */}

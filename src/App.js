@@ -24,8 +24,11 @@ const App = () => {
             {/* Router Switch */}
             <Switch>
               <Route exact path="/" component={Main} />
+              <Route exact path="/home" component={Main} />
               <Route exact path="/feed" component={Feed} />
+              <Route exact path="/likes" />
               <Route exact path="/post" />
+              <Route exact path="/login" />
             </Switch>
             {/* Footer */}
             {/* <Footer /> */}
