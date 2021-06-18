@@ -5,7 +5,12 @@ import { Consumer } from "../../Contexts/PostContext";
 class Post extends Component {
   state = {
     user: "",
-    img: "",
+    userImageURL: "", 
+    previewURL: "",
+    largeImageURL: "", 
+    favorites: 0,
+    likes: 0, 
+    comments: 0,
     tags: ""
   };
 
@@ -18,10 +23,11 @@ class Post extends Component {
   onSubmit = (dispatch, e) => {
     console.log(dispatch);
     e.preventDefault();
-    const { user, img, tags } = this.state;
+    const { user, previewURL, largeImageURL,tags } = this.state;
     const newPost = {
       user,
-      img,
+      previewURL,
+      largeImageURL,
       tags
     };
     dispatch({ type: "UPLOAD", payload: newPost });
@@ -34,7 +40,7 @@ class Post extends Component {
         {(value) => {
           console.log(value); //新しいPostのデータがあり value.files[0]
           const { dispatch } = value;
-          const { user, img, tags } = this.state;
+          const { user, previewURL, tags } = this.state;
           return (
             <>
               <h1> POST</h1>
@@ -58,8 +64,8 @@ class Post extends Component {
                 <label>Image</label>
                 <input
                   type="file"
-                  value={img}
-                  name="img"
+                  value={previewURL}
+                  name="previewURL"
                   placeholder="Choose a image"
                   onChange={this.onChange}
                 />
@@ -67,7 +73,7 @@ class Post extends Component {
                 <br />
                 <br />
 
-                <label>Tag: </label>
+                <label>: </label>
                 <input
                   type="text"
                   value={tags}
@@ -85,12 +91,6 @@ class Post extends Component {
                 <br />
 
               </form>
-
-              {/* Post Result option #1*/}
-              {value.files[0] ? (
-                //Show result
-                <h1>Test</h1>
-              ): ""}
             </>
           );
         }}
