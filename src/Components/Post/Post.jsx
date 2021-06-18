@@ -35,7 +35,6 @@ class Post extends Component {
           console.log(value); //新しいPostのデータがあり value.files[0]
           const { dispatch } = value;
           const { user, img, tags } = this.state;
-
           return (
             <>
               <h1> POST</h1>
@@ -49,6 +48,7 @@ class Post extends Component {
                   value={user}
                   name="user"
                   placeholder="Enter your username"
+
                   onChange={this.onChange}
                 />
 
@@ -98,7 +98,6 @@ class Post extends Component {
     );
   }
 }
-
 
 
 export default Post;
