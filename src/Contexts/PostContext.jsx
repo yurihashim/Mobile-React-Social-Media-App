@@ -1,35 +1,40 @@
-import React from "react"; 
+import React from "react";
 
-const Context = React.createContext(); 
+const Context = React.createContext();
 
 const Postreducer = (state, action) => {
-    switch (action.type) {
-        case "UPLOAD":
-            return {
-                ...state, 
-                files: [action.payload, ...state.files]
-            }; 
-            default:
-                return state; 
-    }
-}; 
+
+  console.log("Post COntents action.payload is ", action.payload);
+  switch (action.type) {
+    case "UPLOAD":
+      return {
+        ...state,
+        files: [action.payload, ...state.files]
+      };
+    default:
+      return state;
+  }
+};
 
 export class PostProvider extends React.Component {
-    state= {
-        files:[], 
+  state = {
+    files: [], //new post
 
-        dispatch: (action) => {
-            this.setState((state) => Postreducer(state, action)); 
-        }
-    }; 
-
-    render() {
-        return (
-            <Context.PostProvider value={this.state}>
-                {this.props.children}
-            </Context.PostProvider>
-        ); 
+    dispatch: (action) => {
+      this.setState((state) => Postreducer(state, action));
     }
+  };
+
+  render() {
+    return (
+      <>
+        <Context.Provider value={this.state}>
+          {this.props.children}
+        </Context.Provider>
+      </>
+    );
+  }
 }
 
-export const Consumer = Context.Consumer; 
+export const Consumer = Context.Consumer;
+export default Consumer;

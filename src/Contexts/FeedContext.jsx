@@ -16,7 +16,8 @@ const FeedProvider = (props) => {
 
   //initial state for the reducer
   const initialState = {
-    imageData: []
+    imageData: [],
+    likes: [],
   };
 
   //Reducer

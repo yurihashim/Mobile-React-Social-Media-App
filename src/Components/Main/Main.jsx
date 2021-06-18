@@ -8,11 +8,8 @@ import Header from '../Header/Header';
 const Main = () => {
   return (
     <>
-      {/* Header Component */}
-      <Header />
       {/* Feed -- default component */}
       <Feed />
-      {/* Footer component */}
     </>
   );
 };
