@@ -18,7 +18,7 @@ class Post extends Component {
     onSubmit = (dispatch, e) => {
         console.log(dispatch)
         e.preventDefault(); 
-        const {name, image, caption} = this.state; 
+        const {user, img, tags} = this.state; 
         const newPost = {
             user, 
             img, 
