@@ -72,7 +72,7 @@
 }
 
 .feedContainer .imgRow .col .hoverText .buttons p,
-.feedContainer .imgRow .col .hoverText .buttons button {
+.feedContainer .imgRow .col .hoverText .buttons span {
   margin: 1rem;
   border: none;
   background-color: unset;
@@ -81,7 +81,7 @@
 }
 
 .feedContainer .imgRow .col .hoverText .buttons p:hover,
-.feedContainer .imgRow .col .hoverText .buttons button:hover {
+.feedContainer .imgRow .col .hoverText .buttons span:hover {
   color: #f17f73;
 }
 
@@ -115,8 +115,19 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: white;
-  width: 60%;
-  height: 60%;
+  border: 0.1rem solid #ff0;
+  color: #fff;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .user img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 /*# sourceMappingURL=Feed.css.map */

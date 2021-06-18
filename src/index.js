@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import PostProvider from "./Contexts/PostContext";
+import FeedProvider from "./Contexts/FeedContext";
 
 ReactDOM.render(
   <React.StrictMode>

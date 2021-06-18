@@ -53,7 +53,7 @@
           display: flex;
           justify-content: center;
           p,
-          button {
+          span {
             margin: 1rem;
             border: none;
             background-color: unset;
@@ -93,9 +93,21 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: white;
-      width: 60%;
-      height: 60%;
+      // background-color: white;
+      border: 0.1rem solid #ff0;
+      color: #fff;
+      .largeImg {
+      }
+      .userInfo {
+        .user {
+          display: flex;
+          img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+          }
+        }
+      }
     }
   }
 }
