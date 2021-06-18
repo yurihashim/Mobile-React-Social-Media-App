@@ -3,18 +3,20 @@ import React, { Component } from "react";
 import { Consumer } from "../../Contexts/PostContext";
 
 class Post extends Component {
+  ////////////////// state name change
   state = {
     user: "",
-    userImageURL: "", 
     previewURL: "",
-    largeImageURL: "", 
-    favorites: 0,
-    likes: 0, 
+    largeImageURL: "",
+    tags: "",
+    likes: 0,
     comments: 0,
-    tags: ""
+    favorites: 0,
+    userImageURL: ""
   };
 
   onChange = (e) => {
+    console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -23,6 +25,7 @@ class Post extends Component {
   onSubmit = (dispatch, e) => {
     console.log(dispatch);
     e.preventDefault();
+
     const { user, previewURL, largeImageURL,tags } = this.state;
     const newPost = {
       user,
@@ -30,6 +33,8 @@ class Post extends Component {
       largeImageURL,
       tags
     };
+
+    console.log(newPost);
     dispatch({ type: "UPLOAD", payload: newPost });
     this.props.history.push({pathname:'/feed'})
   };
@@ -38,7 +43,6 @@ class Post extends Component {
     return (
       <Consumer>
         {(value) => {
-          console.log(value); //新しいPostのデータがあり value.files[0]
           const { dispatch } = value;
           const { user, previewURL, tags } = this.state;
           return (
@@ -53,8 +57,7 @@ class Post extends Component {
                   type="text"
                   value={user}
                   name="user"
-                  placeholder="Enter your username"
-
+                  placeholder="Enter your name"
                   onChange={this.onChange}
                 />
 
@@ -72,13 +75,13 @@ class Post extends Component {
 
                 <br />
                 <br />
-
-                <label>: </label>
+                    
+                <label>Tag: </label>
                 <input
                   type="text"
                   value={tags}
                   name="tags"
-                  placeholder="Add tags"
+                  placeholder="Enter tag"
                   onChange={this.onChange}
                 />
 
@@ -99,5 +102,5 @@ class Post extends Component {
   }
 }
 
-
 export default Post;
+

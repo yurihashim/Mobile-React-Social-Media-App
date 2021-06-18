@@ -17,7 +17,7 @@ const FeedProvider = (props) => {
   //initial state for the reducer
   const initialState = {
     imageData: [],
-    likes: [],
+    favorite: []
   };
 
   //Reducer
@@ -33,6 +33,7 @@ const FeedProvider = (props) => {
         } else {
           const imgData = await imgRes.json();
           console.log(imgData);
+
           dispatchImage({ type: "FETCH_SUCCESS", payload: imgData });
         }
       })();

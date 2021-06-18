@@ -3,8 +3,7 @@ import React from "react";
 const Context = React.createContext();
 
 const Postreducer = (state, action) => {
-
-  console.log("Post COntents action.payload is ", action.payload);
+  console.log("Post Contents action.payload is ", action.payload);
   
   switch (action.type) {
     case "UPLOAD":
@@ -19,7 +18,7 @@ const Postreducer = (state, action) => {
 
 export class PostProvider extends React.Component {
   state = {
-    files: [], //new post
+    files: [],
 
     dispatch: (action) => {
       this.setState((state) => Postreducer(state, action));
@@ -28,15 +27,13 @@ export class PostProvider extends React.Component {
 
   render() {
     return (
-      <>
-        <Context.Provider value={this.state}>
-          {this.props.children}
-        </Context.Provider>
-      </>
+      <Context.Provider value={this.state}>
+        {this.props.children}
+      </Context.Provider>
     );
   }
 }
 
 export const Consumer = Context.Consumer;
-
 export default Consumer;
+
