@@ -6,14 +6,19 @@ const FeedReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_SUCCESS":
       return {
-        imageData: action.payload.hits
+        imageData: action.payload.hits,
+        favorite: []
       };
     case "LIKE":
       return {
         ...state,
         imageData: state.imageData.map(e => e.id === action.payload.id ? action.payload : e)
       };
-
+    case "ADD_FAVORITES":
+      return {
+        ...state,
+        favorite: [action.payload]
+      };
     default:
       throw Error("Action name not defined");
   }

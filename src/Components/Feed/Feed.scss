@@ -11,7 +11,7 @@
     .col {
       position: relative;
       padding: 0;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
       .imagPanel {
         // padding: 1rem;
         img {
@@ -52,6 +52,9 @@
           text-align: center;
           display: flex;
           justify-content: center;
+          border: none;
+          background-color: transparent;
+          color: $white;
           p,
           span {
             margin: 1rem;
@@ -63,6 +66,14 @@
               color: $accent1;
             }
           }
+        }
+        .username {
+          color: $white;
+          bottom: 10%;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
         }
       }
     }
@@ -93,18 +104,97 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      // background-color: white;
-      border: 0.1rem solid #ff0;
-      color: #fff;
+      color: $white;
+      width: 80%;
       .largeImg {
+        border-top: 2rem solid $black;
+        border-bottom: 2rem solid $black;
+        padding: 0;
       }
       .userInfo {
+        background-color: $white;
+        color: $baseColor;
         .user {
           display: flex;
+          justify-content: space-around;
+          flex-direction: row;
+          align-items: center;
+          margin-top: 1rem;
+          font-size: 2rem;
           img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
+            margin-right: 1rem;
+          }
+          div {
+            text-align: center;
+            .tag {
+              text-align: center;
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .buttons {
+          text-align: center;
+          border-top: 0.1rem groove;
+          padding-top: 1rem;
+          span {
+            margin: 1rem;
+            border: none;
+            background-color: unset;
+            z-index: 1000;
+            cursor: pointer;
+            &:hover {
+              font-weight: bold;
+            }
+          }
+          .likes {
+            svg {
+              color: $accent1;
+            }
+          }
+          .unlikes {
+            svg {
+              color: $accent3;
+            }
+          }
+          .favorites {
+            svg {
+              color: $accent2;
+            }
+          }
+        }
+      }
+      .commentArea {
+        margin: 1rem 0;
+        overflow-y: scroll;
+        height: 45vh;
+        padding-left: 1rem;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        .form-group {
+          width: 100%;
+          .form-control {
+            outline: none;
+            -webkit-appearance: button;
+            &:focus {
+              outline: none;
+              box-shadow: none;
+              border: 0.1rem solid $accent3;
+            }
+            &:active {
+              outline: none;
+              box-shadow: none;
+              border: 0.1rem solid $accent3;
+            }
+            &:-internal-autofill-selected {
+              background-color: transparent;
+            }
           }
         }
       }

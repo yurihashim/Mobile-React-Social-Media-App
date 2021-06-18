@@ -1,3 +1,4 @@
+/* color palette*/
 .feedContainer {
   margin-top: 50px;
   padding-top: 2rem;
@@ -15,8 +16,8 @@
 .feedContainer .imgRow .col {
   position: relative;
   padding: 0;
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .feedContainer .imgRow .col .imagPanel img {
@@ -70,6 +71,9 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  border: none;
+  background-color: transparent;
+  color: white;
 }
 
 .feedContainer .imgRow .col .hoverText .buttons p,
@@ -84,6 +88,16 @@
 .feedContainer .imgRow .col .hoverText .buttons p:hover,
 .feedContainer .imgRow .col .hoverText .buttons span:hover {
   color: #f17f73;
+}
+
+.feedContainer .imgRow .col .hoverText .username {
+  color: white;
+  bottom: 10%;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
 }
 
 .feedContainer .modalContainer {
@@ -116,19 +130,125 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  border: 0.1rem solid #ff0;
-  color: #fff;
+  color: white;
+  width: 80%;
+}
+
+.feedContainer .modalContainer .imageModal .largeImg {
+  border-top: 2rem solid black;
+  border-bottom: 2rem solid black;
+  padding: 0;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo {
+  background-color: white;
+  color: #363432;
 }
 
 .feedContainer .modalContainer .imageModal .userInfo .user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  font-size: 2rem;
 }
 
 .feedContainer .modalContainer .imageModal .userInfo .user img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .user div {
+  text-align: center;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .user div .tag {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .buttons {
+  text-align: center;
+  border-top: 0.1rem groove;
+  padding-top: 1rem;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .buttons span {
+  margin: 1rem;
+  border: none;
+  background-color: unset;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .buttons span:hover {
+  font-weight: bold;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .buttons .likes svg {
+  color: #f17f73;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .buttons .unlikes svg {
+  color: #31cbdc;
+}
+
+.feedContainer .modalContainer .imageModal .userInfo .buttons .favorites svg {
+  color: #dc3b31;
+}
+
+.feedContainer .modalContainer .imageModal .commentArea {
+  margin: 1rem 0;
+  overflow-y: scroll;
+  height: 45vh;
+  padding-left: 1rem;
+}
+
+.feedContainer .modalContainer .imageModal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.feedContainer .modalContainer .imageModal form .form-group {
+  width: 100%;
+}
+
+.feedContainer .modalContainer .imageModal form .form-group .form-control {
+  outline: none;
+  -webkit-appearance: button;
+}
+
+.feedContainer .modalContainer .imageModal form .form-group .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0.1rem solid #31cbdc;
+}
+
+.feedContainer .modalContainer .imageModal form .form-group .form-control:active {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0.1rem solid #31cbdc;
+}
+
+.feedContainer .modalContainer .imageModal form .form-group .form-control:-internal-autofill-selected {
+  background-color: transparent;
 }
 /*# sourceMappingURL=Feed.css.map */

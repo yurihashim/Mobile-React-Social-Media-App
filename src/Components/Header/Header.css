@@ -1,3 +1,4 @@
+/* color palette*/
 .navbar {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -47,7 +48,7 @@
 }
 
 .navbar header .likes {
-  color: #DC3B31;
+  color: #dc3b31;
 }
 
 .navbar .searchForm {
