@@ -5,6 +5,7 @@ const Context = React.createContext();
 const Postreducer = (state, action) => {
 
   console.log("Post COntents action.payload is ", action.payload);
+  
   switch (action.type) {
     case "UPLOAD":
       return {
