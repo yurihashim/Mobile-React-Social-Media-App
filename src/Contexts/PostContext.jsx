@@ -38,4 +38,5 @@ export class PostProvider extends React.Component {
 }
 
 export const Consumer = Context.Consumer;
+
 export default Consumer;
