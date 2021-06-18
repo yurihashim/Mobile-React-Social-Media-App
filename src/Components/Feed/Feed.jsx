@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import "./Feed.css";
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaHeart, FaCommentDots } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -9,17 +9,21 @@ import FeedContext from "../../Contexts/FeedContext";
 const Feed = () => {
 
   const { images, dispatchImage } = useContext(FeedContext);
-  console.log(images);
+  console.log("images object is ", images);
 
   //private state hook for modal pop up
   const [modalStyle, setModalStyle] = useState({ "display": "none" });
   const [targetImage, setTargetImage] = useState({});
 
-  const likeClickHandler = (e, id) => {
+  //increment the like count
+  const incrementLike = (e, id) => {
     console.log("like id is", id);
     console.log(e);
     console.log(images.imageData);
-    //find which photo obj is liked
+    e.stopPropagation(); //prevent modal pop up to open
+    e.preventDefault();//prevent modal pop up to open
+
+    //find the photo obj liked
     let likedImgObj = images.imageData.find(e => e.id === id);
     //increment like count
     let updatedImgObj = Object.assign(likedImgObj, { likes: likedImgObj["likes"] + 1 });
@@ -27,18 +31,31 @@ const Feed = () => {
     dispatchImage({ type: "LIKE", payload: updatedImgObj });
   };
 
-  const commentClick = (e) => {
-    console.log("comment");
-
+  const commentClick = (e, id) => {
+    console.log("comment", id);
+    console.log(e);
   };
 
-  //Modal methods
-  const openModal = () => {
+  //methods for modal
+  const openModal = (e, id) => {
+    //open modal
+    console.log("modal Clicked", images);
+    console.log(e, id);
+    //find which modal should open
+    let clickedImgObj = images.imageData.find(e => e.id === id);
+    console.log(clickedImgObj);
+    setTargetImage(clickedImgObj);
     setModalStyle({ "display": "block" });
   };
 
   const hideModal = () => {
     setModalStyle({ "display": "none" });
+  };
+
+  const addToLikes = (e, id) => {
+    //find the target object
+    let targetObj =
+      dispatchImage({ type: "ADD_LIKES", payload: targetImage.id });
   };
 
   return (
@@ -48,15 +65,15 @@ const Feed = () => {
           <Row className="imgRow row row-cols-5">
             {images.imageData.map((elem, index) => (
               <>
-                <Col key={index}>
+                <Col>
                   <div className="imagPanel">
                     <img src={elem.previewURL} alt={elem.tags} />
                     {/* show when hovered */}
-                    <button className="hoverText" type="button">
-                      <p className="tag">{elem.tags}</p>
+                    <button className="hoverText" type="button" onClick={e => openModal(e, elem.id)}>
+                      <p className="tag"># {elem.tags}</p>
                       <div className="buttons">
-                        <button onClick={e => likeClickHandler(e, elem.id)}><FaHeart /> {elem.likes}</button>
-                        <button onClick={(e) => { commentClick(e); }}><FaCommentDots /> {elem.comments}</button>
+                        <span onClick={e => incrementLike(e, elem.id)}><FaHeart /> {elem.likes}</span>
+                        <span onClick={(e) => { commentClick(e, elem.id); }}><FaCommentDots /> {elem.comments}</span>
                       </div>
                     </button>
                   </div>
@@ -64,18 +81,23 @@ const Feed = () => {
               </>
             ))}
           </Row>
+
           {/* Modal */}
           {targetImage ? (
             <>
               <div className="modalContainer" style={modalStyle}>
                 <button className="clsBtn" onClick={hideModal}><ImCross /></button>
-                <div className="imageModal">
-                  <img className="col-8" src={targetImage.largeImageURL} alt="largeImage" />
-                  <div className="col-4">
-                    <h2>{targetImage.userImageURL} {targetImage.user}</h2>
-                    <p>{targetImage.tags}</p>
-                  </div>
-                </div>
+                <Row className="imageModal">
+                  <img className="col col-8 largeImg" src={targetImage.largeImageURL} alt="largeImage" />
+                  <Col className="col-4 userInfo">
+                    <p className="user">
+                      <img src={targetImage.userImageURL} alt="userImg" />
+                      <p>{targetImage.user}</p>
+                    </p>
+                    <p className="tag"># {targetImage.tags}</p>
+                    <button type="button" onClick={() => { dispatchImage({ type: "ADD_LIKES", payload: targetImage }); }}><FaHeart /></button>
+                  </Col>
+                </Row>
               </div>
             </>
           ) : ""}

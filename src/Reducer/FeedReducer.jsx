@@ -14,7 +14,14 @@ const FeedReducer = (state, action) => {
         ...state,
         imageData: state.imageData.map(e => e.id === action.payload.id ? action.payload : e)
       };
-      return console.log("liked", state.imageData.find(e => e.id === action.payload));
+    //Yuri's reducer
+    //UPLOAD
+
+    // case "ADD_LIKES":
+    //   return {
+    //     localStorage.setItem("likes", action.payload)
+    //   };
+
 
     default:
       throw Error("Action name not defined");
