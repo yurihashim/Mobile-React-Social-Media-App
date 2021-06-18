@@ -227,6 +227,7 @@
 
 .feedContainer .modalContainer .imageModal form .form-group {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .feedContainer .modalContainer .imageModal form .form-group .form-control {
@@ -250,5 +251,9 @@
 
 .feedContainer .modalContainer .imageModal form .form-group .form-control:-internal-autofill-selected {
   background-color: transparent;
+}
+
+.feedContainer .modalContainer .imageModal form .postBtn {
+  margin-bottom: 1rem;
 }
 /*# sourceMappingURL=Feed.css.map */

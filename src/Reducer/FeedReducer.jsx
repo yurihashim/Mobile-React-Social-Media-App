@@ -7,7 +7,8 @@ const FeedReducer = (state, action) => {
     case "FETCH_SUCCESS":
       return {
         imageData: action.payload.hits,
-        favorite: []
+        favorite: [],
+        comments: []
       };
     case "LIKE":
       return {
@@ -18,6 +19,11 @@ const FeedReducer = (state, action) => {
       return {
         ...state,
         favorite: [action.payload]
+      };
+    case "UPLOAD":
+      return {
+        ...state,
+        imageData: [action.payload[0], ...state.imageData]
       };
     default:
       throw Error("Action name not defined");

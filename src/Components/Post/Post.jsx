@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 //import axios from "axios"; 
 import { Consumer } from "../../Contexts/PostContext";
-//for routing
-import { withRouter } from 'react-router-dom';
 
 class Post extends Component {
+  ////////////////// state name change
+  state = {
+    user: "",
+    previewURL: "",
+    largeImageURL: "",
+    tags: "",
+    likes: 0,
+    comments: 0,
+    favorites: 0,
+    userImageURL: ""
+  };
+
+  ////////////////// state name change
   state = {
     user: "",
     img: "",
@@ -21,17 +32,29 @@ class Post extends Component {
   onSubmit = (dispatch, e) => {
     console.log(dispatch);
     e.preventDefault();
-    const { user, img, tags } = this.state;
+    ////////////////// state name change
+    const { user, previewURL, largeImageURL, tags } = this.state;
+    console.log(previewURL);
+    console.log(e.target.elements[1].files[0].name);
+
+    const formData = new FormData();
+    formData.append('file', e.target.elements[1].files[0].name);
+    let formatedFilePath = formData.get("file")
+    console.log("formated file", formData.get("file"));
+
     const newPost = {
       user,
-      img,
+      previewURL: formData.get("file"),
+      largeImageURL: formData.get("file"),
       tags
     };
+    ////////////////// state name change
+
+    console.log(newPost);
     dispatch({ type: "UPLOAD", payload: newPost });
     //Go back to feed page
     this.props.history.push({
       pathname: '/feed',
-      state: { state: this.state }
     });
   };
 
@@ -40,7 +63,8 @@ class Post extends Component {
       <Consumer>
         {(value) => {
           const { dispatch } = value;
-          const { user, img, tags } = this.state;
+          ////////////////// state name change
+          const { user, previewURL, largeImageURL, tags } = this.state;
 
           return (
             <>
@@ -61,8 +85,10 @@ class Post extends Component {
                 <label>Image</label>
                 <input
                   type="file"
-                  value={img}
-                  name="img"
+                  ////////////////// state name change
+                  value={previewURL}
+                  name="previewURL"
+                  ////////////////// state name change
                   placeholder="Choose your file"
                   onChange={this.onChange}
                 />

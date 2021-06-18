@@ -179,6 +179,7 @@
         width: 100%;
         .form-group {
           width: 100%;
+          margin-bottom: 1rem;
           .form-control {
             outline: none;
             -webkit-appearance: button;
@@ -196,6 +197,9 @@
               background-color: transparent;
             }
           }
+        }
+        .postBtn {
+          margin-bottom: 1rem;
         }
       }
     }

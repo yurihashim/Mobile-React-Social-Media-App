@@ -33,6 +33,7 @@ const FeedProvider = (props) => {
         } else {
           const imgData = await imgRes.json();
           console.log(imgData);
+
           dispatchImage({ type: "FETCH_SUCCESS", payload: imgData });
         }
       })();

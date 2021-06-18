@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import "./Feed.css";
 import { Row, Col, Button, Form, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -13,8 +13,17 @@ const Feed = () => {
   const { files, dispatch } = useContext(Context);
   console.log("images object is ", images);
 
-  console.log("files", files); //files[0] = object same as state
-  console.log("files", dispatch);
+  console.log("files", files); //files[0] = array of onject
+
+  useEffect(() => {
+    {
+      files.length !== 0 ? (
+        //set "files" into "images" state
+        dispatchImage({ type: "UPLOAD", payload: files })
+      ) : console.log("First loading. Post not yet added");
+    }
+  }, []);
+
 
   //private state hook for modal pop up
   const [modalStyle, setModalStyle] = useState({ "display": "none" });
@@ -22,7 +31,6 @@ const Feed = () => {
 
   //================== increment/decrement the like count ================== 
   const handleClick = (e, id) => {
-    console.log(e);
     e.stopPropagation(); //prevent modal pop up to open
     e.preventDefault();//prevent modal pop up to open
 
@@ -43,7 +51,6 @@ const Feed = () => {
 
   //================== Add photo to favorite ================== 
   const addToFavorite = (e, id) => {
-    console.log("favorite clicked", e, id);
     e.stopPropagation(); //prevent modal pop up to open
     e.preventDefault();//prevent modal pop up to open
     //find the target object
@@ -58,18 +65,21 @@ const Feed = () => {
 
   //================== methods for modal ================== 
   const openModal = (e, id) => {
-    //open modal
-    console.log("modal Clicked", images);
-    console.log(e, id);
     //find which modal should open
     let clickedImgObj = images.imageData.find(e => e.id === id);
-    console.log(clickedImgObj);
     setTargetImage(clickedImgObj);
     setModalStyle({ "display": "block" });
   };
 
   const hideModal = () => {
     setModalStyle({ "display": "none" });
+  };
+
+  //================== Post comments ================== 
+  const postComment = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log("comment posted");
   };
 
   return (
@@ -149,12 +159,16 @@ const Feed = () => {
                       </Card.Body>
                     </Card>
 
-                    <Form>
+                    <Form onSubmit={e => postComment(e)}>
                       <Form.Group>
-                        <Form.Control type="text" placeholder="Add a comment..." />
+                        <Form.Control type="text" placeholder="Add a comment..."
+                          // onChange={e => postComment(e)}
+                          value="input comment"
+                        />
                       </Form.Group>
-                      <Button variant="outline-info">Post</Button>
+                      <Button variant="outline-info" className="postBtn">Post</Button>
                     </Form>
+
                   </Col>
 
                 </Row>
