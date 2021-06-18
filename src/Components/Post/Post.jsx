@@ -1,17 +1,17 @@
-import React, { Component } from "react"; 
+import React, { Component, useReducer } from "react"; 
 //import axios from "axios"; 
 import {Consumer} from "../../Contexts/PostContext";
 
 class Post extends Component {
     state = {
-        name: "", 
-        image: "", 
-        caption: ""
+        user: "", 
+        img: "", 
+        tags: ""
     }; 
 
     onChange = (e) => {
         this.setState ({
-            [e.target.name]: e.target.value
+            [e.target.user]: e.target.value
         }); 
     }; 
 
@@ -20,9 +20,9 @@ class Post extends Component {
         e.preventDefault(); 
         const {name, image, caption} = this.state; 
         const newPost = {
-            name, 
-            image, 
-            caption
+            user, 
+            img, 
+            tags
         }; 
         dispatch({type: "UPLOAD", payload: newPost}); 
     }; 
@@ -32,17 +32,17 @@ class Post extends Component {
             <Consumer>
                 {(value) => {
                     const {dispatch} = value; 
-                    const {name, image, caption} = this.state; 
+                    const {user, img, tags} = this.state; 
 
                     return (
                         <>
                         <h1> POST</h1>
                         <form onSubmit = {this.onSubmit.bind(this, dispatch)}>
-                            <label>Name: </label>
+                            <label>User: </label>
                             <input
                                 type = "text"
-                                value = {name}
-                                name = "name"
+                                value = {user}
+                                name = "user"
                                 placeholder = "Enter your name"
                                 onChange = {this.onChange}
                             />
@@ -53,7 +53,7 @@ class Post extends Component {
                             <label>Image</label>
                             <input 
                                 type = "file"
-                                value =  {image}
+                                value =  {img}
                                 name = "image"
                                 placeholder = "Choose your file"
                                 onChange = {this.onChange}
@@ -62,12 +62,12 @@ class Post extends Component {
                             <br/>
                             <br/>
 
-                            <label>Caption: </label>
+                            <label>Tag: </label>
                             <input
                                 type = "text"
-                                value = {caption}
-                                name = "caption"
-                                placeholder = "Enter your comments"
+                                value = {tags}
+                                name = "tag"
+                                placeholder = "Enter tag"
                                 onChange = {this.onChange}
                             />
 
