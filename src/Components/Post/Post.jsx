@@ -91,12 +91,6 @@ class Post extends Component {
                 <br />
 
               </form>
-
-              {/* Post Result option #1*/}
-              {value.files[0] ? (
-                //Show result
-                <h1>Test</h1>
-              ): ""}
             </>
           );
         }}
