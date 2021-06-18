@@ -18,12 +18,17 @@ const FeedReducer = (state, action) => {
     case "ADD_FAVORITES":
       return {
         ...state,
-        favorite: [action.payload]
+        favorite: [action.payload] //assigning after updated
       };
     case "UPLOAD":
       return {
         ...state,
         imageData: [action.payload[0], ...state.imageData]
+      };
+    case "ADD_COMMENTS":
+      return {
+        ...state,
+        comments: [action.payload, ...state.comments] //only one comment added
       };
     default:
       throw Error("Action name not defined");

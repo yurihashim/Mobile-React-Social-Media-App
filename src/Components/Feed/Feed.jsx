@@ -11,6 +11,7 @@ const Feed = () => {
 
   const { images, dispatchImage } = useContext(FeedContext);
   const { files, dispatch } = useContext(Context);
+
   console.log("images object is ", images);
 
   console.log("files", files); //files[0] = array of onject
@@ -28,6 +29,7 @@ const Feed = () => {
   //private state hook for modal pop up
   const [modalStyle, setModalStyle] = useState({ "display": "none" });
   const [targetImage, setTargetImage] = useState({});
+  const [comments, setComments] = useState();
 
   //================== increment/decrement the like count ================== 
   const handleClick = (e, id) => {
@@ -56,7 +58,7 @@ const Feed = () => {
     //find the target object
     let targetPhoto = images.imageData.find(e => e.id === id);
 
-    //increment favorites count
+    //update the object before dispatching : array of object
     let updatedImgObj = Object.assign(targetPhoto, { favorites: targetPhoto["favorites"] + 1 });
 
     //update the state
@@ -77,9 +79,8 @@ const Feed = () => {
 
   //================== Post comments ================== 
   const postComment = (e) => {
-    e.stopPropagation();
     e.preventDefault();
-    console.log("comment posted");
+    dispatchImage({ type: "ADD_COMMENTS", payload: comments });
   };
 
   return (
@@ -117,7 +118,7 @@ const Feed = () => {
           {/* Modal */}
           {targetImage ? (
             <>
-              <div className="modalContainer" onClick={hideModal} style={modalStyle}>
+              <div className="modalContainer" style={modalStyle}>
                 <button className="clsBtn" onClick={hideModal}><ImCross /></button>
                 <Row className="imageModal">
                   <img className="col col-8 largeImg" src={targetImage.largeImageURL} alt="largeImage" />
@@ -147,26 +148,42 @@ const Feed = () => {
                     <Card className="commentArea">
                       <Card.Body >
                         <blockquote className="blockquote mb-0">
-                          <p>
-                            {' '}
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                            erat a ante.{' '}
-                          </p>
-                          <footer className="blockquote-footer">
-                            Someone famous in <cite title="Source Title">Source Title</cite>
-                          </footer>
+                          <p className="commentNum"># 1</p>
+                          <p>Awesome photo!!</p>
                         </blockquote>
+                        {images.comments.map((elem, index) => (
+                          <blockquote className="blockquote mb-0">
+                            <p className="commentNum"># {index + 2}</p>
+                            <p>{elem}</p>
+                          </blockquote>
+                        ))}
+
+                        {/* {images.comments.length !== 0 ? (
+                          {images.comments.map((elem, index) => {
+                              <blockquote className="blockquote mb-0">
+                                <p>
+                                  {' '}
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                                  erat a ante.{' '}
+                                </p>
+                                <footer className="blockquote-footer">
+                                  Someone famous in <cite title="Source Title">Source Title</cite>
+                                </footer>
+                              </blockquote>;
+                            })}
+
+                        ) : (console.log("comments not yet added"))} */}
                       </Card.Body>
                     </Card>
 
-                    <Form onSubmit={e => postComment(e)}>
+                    <Form onSubmit={postComment}>
                       <Form.Group>
                         <Form.Control type="text" placeholder="Add a comment..."
-                          // onChange={e => postComment(e)}
-                          value="input comment"
+                          onChange={e => { setComments(e.target.value); console.log("adding comments"); }}
+                          value={comments}
                         />
                       </Form.Group>
-                      <Button variant="outline-info" className="postBtn">Post</Button>
+                      <Button type="submit" variant="outline-info" className="postBtn">Post</Button>
                     </Form>
 
                   </Col>
