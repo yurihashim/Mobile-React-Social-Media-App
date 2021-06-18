@@ -172,6 +172,13 @@
         overflow-y: scroll;
         height: 45vh;
         padding-left: 1rem;
+        .card-body{
+          blockquote {
+            .commentNum {
+              margin-bottom: 0;
+            }
+          }
+        }
       }
       form {
         display: flex;
