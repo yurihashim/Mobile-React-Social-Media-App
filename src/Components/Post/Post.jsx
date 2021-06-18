@@ -15,13 +15,6 @@ class Post extends Component {
     userImageURL: ""
   };
 
-  ////////////////// state name change
-  state = {
-    user: "",
-    img: "",
-    tags: ""
-  };
-
   onChange = (e) => {
     console.log(e);
     this.setState({
@@ -32,30 +25,18 @@ class Post extends Component {
   onSubmit = (dispatch, e) => {
     console.log(dispatch);
     e.preventDefault();
-    ////////////////// state name change
-    const { user, previewURL, largeImageURL, tags } = this.state;
-    console.log(previewURL);
-    console.log(e.target.elements[1].files[0].name);
 
-    const formData = new FormData();
-    formData.append('file', e.target.elements[1].files[0].name);
-    let formatedFilePath = formData.get("file")
-    console.log("formated file", formData.get("file"));
-
+    const { user, previewURL, largeImageURL,tags } = this.state;
     const newPost = {
       user,
-      previewURL: formData.get("file"),
-      largeImageURL: formData.get("file"),
+      previewURL,
+      largeImageURL,
       tags
     };
-    ////////////////// state name change
 
     console.log(newPost);
     dispatch({ type: "UPLOAD", payload: newPost });
-    //Go back to feed page
-    this.props.history.push({
-      pathname: '/feed',
-    });
+    this.props.history.push({pathname:'/feed'})
   };
 
   render() {
@@ -63,14 +44,15 @@ class Post extends Component {
       <Consumer>
         {(value) => {
           const { dispatch } = value;
-          ////////////////// state name change
-          const { user, previewURL, largeImageURL, tags } = this.state;
-
+          const { user, previewURL, tags } = this.state;
           return (
             <>
               <h1> POST</h1>
-              <form onSubmit={this.onSubmit.bind(this, dispatch)}>
-                <label>User: </label>
+              <form 
+                onSubmit={
+                  this.onSubmit.bind(this, dispatch)}
+              >
+                <label>Name: </label>
                 <input
                   type="text"
                   value={user}
@@ -85,17 +67,15 @@ class Post extends Component {
                 <label>Image</label>
                 <input
                   type="file"
-                  ////////////////// state name change
                   value={previewURL}
                   name="previewURL"
-                  ////////////////// state name change
-                  placeholder="Choose your file"
+                  placeholder="Choose a image"
                   onChange={this.onChange}
                 />
 
                 <br />
                 <br />
-
+                    
                 <label>Tag: </label>
                 <input
                   type="text"
@@ -123,3 +103,4 @@ class Post extends Component {
 }
 
 export default Post;
+
