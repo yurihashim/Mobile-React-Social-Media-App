@@ -5,21 +5,22 @@ import { Link } from 'react-router-dom';
 import { FaHeart, FaCommentDots } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import FeedContext from "../../Contexts/FeedContext";
+import Context from "../../Contexts/PostContext";
 
 const Feed = () => {
 
   const { images, dispatchImage } = useContext(FeedContext);
+  const { files, dispatch } = useContext(Context);
   console.log("images object is ", images);
+  console.log("files", files);
+  console.log("files", dispatch);
 
   //private state hook for modal pop up
   const [modalStyle, setModalStyle] = useState({ "display": "none" });
   const [targetImage, setTargetImage] = useState({});
 
-  //increment the like count
+  //================== increment the like count ================== 
   const incrementLike = (e, id) => {
-    console.log("like id is", id);
-    console.log(e);
-    console.log(images.imageData);
     e.stopPropagation(); //prevent modal pop up to open
     e.preventDefault();//prevent modal pop up to open
 
@@ -31,12 +32,13 @@ const Feed = () => {
     dispatchImage({ type: "LIKE", payload: updatedImgObj });
   };
 
+  //================== methods for comments ================== 
   const commentClick = (e, id) => {
     console.log("comment", id);
     console.log(e);
   };
 
-  //methods for modal
+  //================== methods for modal ================== 
   const openModal = (e, id) => {
     //open modal
     console.log("modal Clicked", images);

@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 //import axios from "axios"; 
 import { Consumer } from "../../Contexts/PostContext";
+//for routing
+import { withRouter } from 'react-router-dom';
 
 class Post extends Component {
   state = {
-    name: "",
-    image: "",
-    caption: ""
+    user: "",
+    img: "",
+    tags: ""
   };
 
   onChange = (e) => {
+    console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -18,32 +21,36 @@ class Post extends Component {
   onSubmit = (dispatch, e) => {
     console.log(dispatch);
     e.preventDefault();
-    const { name, image, caption } = this.state;
+    const { user, img, tags } = this.state;
     const newPost = {
-      name,
-      image,
-      caption
+      user,
+      img,
+      tags
     };
     dispatch({ type: "UPLOAD", payload: newPost });
+    //Go back to feed page
+    this.props.history.push({
+      pathname: '/feed',
+      state: { state: this.state }
+    });
   };
 
   render() {
     return (
       <Consumer>
         {(value) => {
-          console.log(value); //新しいPostのデータがあり value.files[0]
           const { dispatch } = value;
-          const { name, image, caption } = this.state;
+          const { user, img, tags } = this.state;
 
           return (
             <>
               <h1> POST</h1>
               <form onSubmit={this.onSubmit.bind(this, dispatch)}>
-                <label>Name: </label>
+                <label>User: </label>
                 <input
                   type="text"
-                  value={name}
-                  name="name"
+                  value={user}
+                  name="user"
                   placeholder="Enter your name"
                   onChange={this.onChange}
                 />
@@ -54,8 +61,8 @@ class Post extends Component {
                 <label>Image</label>
                 <input
                   type="file"
-                  value={image}
-                  name="image"
+                  value={img}
+                  name="img"
                   placeholder="Choose your file"
                   onChange={this.onChange}
                 />
@@ -63,12 +70,12 @@ class Post extends Component {
                 <br />
                 <br />
 
-                <label>Caption: </label>
+                <label>Tag: </label>
                 <input
                   type="text"
-                  value={caption}
-                  name="caption"
-                  placeholder="Enter your comments"
+                  value={tags}
+                  name="tags"
+                  placeholder="Enter tag"
                   onChange={this.onChange}
                 />
 
@@ -81,12 +88,6 @@ class Post extends Component {
                 <br />
 
               </form>
-
-              {/* Post Result option #1*/}
-              {value.files[0] ? (
-                //Show result
-                <h1>Test</h1>
-              ): ""}
             </>
           );
         }}
@@ -94,79 +95,5 @@ class Post extends Component {
     );
   }
 }
-
-// class Post extends Component {
-
-//     state = {
-//         selectedFile : null
-//     }
-
-//     fileSelectedHandler = event => {
-//         this.setState({
-//             selectedFile: event.target.files[0]
-//         })
-//     }
-
-//     fileUploadHandler = () => {
-//         axios.post(''); 
-//     }
-
-
-//     render() {
-//         return (
-//             <>
-//                 <input 
-//                     type = "file"
-//                     onChange = {this.fileSelectedHandler}
-//                 />
-
-//                 <button
-//                     onClick= {this.fileUploadHandler}>
-//                     Upload
-//                 </button>
-
-//             </>
-//         ); 
-//     }
-// }
-
-// function Post() {
-//     const [image,  setImage]  = useState(null); 
-//     const [progress,  setProgress]  = useState(0); 
-//     const [caption,  setCaption]  = useState(''); 
-
-//     const handleChange = (e) => {
-//         if (e.tartget.files[0]) {
-//             setImage(e.tartget.files[0]);
-//         }
-//     }; 
-
-//     const handleUpload = () => {
-//         const uploadTask = storage.ref(`images/${image.name}`).put(image); 
-
-//         uploadTask.on(
-//             "state_Changed", 
-//             (snapshot) => {
-//                 //progress function
-//                 const progress = Math.round (
-//                     (snapshot.bytestTransferred / snapshot.totalBytes) *100
-//                 ); 
-//                 setProgress(progress); 
-//             }
-//         )
-
-//     }
-//     return (
-//         <>
-//             <form>
-//                 <input type = "text" placeholder="Enter a caption" onChange={event => setCaption(event.target.value)}/>
-//                 <input type = "file" onChange={handleChange} />
-//                 <button onClick={handleUpload}>
-//                     Upload
-//                 </button>
-//             </form>
-//         </>
-//     )
-// }
 
 export default Post;

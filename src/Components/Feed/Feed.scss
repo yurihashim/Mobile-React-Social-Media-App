@@ -27,7 +27,6 @@
         }
       }
       .hoverText {
-        // display: none;
         position: absolute;
         background-color: $baseColorTr;
         top: 0;
@@ -35,6 +34,7 @@
         width: 100%;
         height: 100%;
         transform: scale(0);
+        border: none;
         .tag {
           color: $white;
           top: 10%;
