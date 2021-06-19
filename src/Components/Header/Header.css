@@ -15,6 +15,7 @@
   border-bottom: 0.1rem groove lightgray;
   background-color: #f0dce2;
   /* header */
+  /* Alert */
   /* search */
 }
 
@@ -51,6 +52,14 @@
   color: #dc3b31;
 }
 
+.navbar .alert {
+  width: 100%;
+  margin-bottom: 0;
+  text-align: right;
+  color: #dc3b31;
+  font-weight: bold;
+}
+
 .navbar .searchForm {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -70,11 +79,10 @@
 }
 
 .navbar .searchForm .form-group .form-control {
-  border: 0.1rem solid black;
+  border: 0.1rem groove #dc3b31;
   background-color: white;
   outline: none;
   -webkit-appearance: button;
-  border-radius: unset;
 }
 
 .navbar .searchForm .form-group .form-control:focus {
@@ -94,14 +102,14 @@
 }
 
 .navbar .searchForm .searchBtn {
-  border-radius: unset;
   background-color: white;
-  border: 0.1rem solid black;
-  color: black;
+  border: 0.1rem groove #f17f73;
+  color: #363432;
 }
 
 .navbar .searchForm .searchBtn:hover, .navbar .searchForm .searchBtn:focus {
-  background-color: white;
+  background-color: #dc3b31;
+  color: white;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;

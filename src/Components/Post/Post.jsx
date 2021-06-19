@@ -12,7 +12,7 @@ class Post extends Component {
     likes: 0,
     comments: 0,
     favorites: 0,
-    userImageURL: ""
+    userImageURL: "",
   };
 
   onChange = (e) => {
@@ -26,17 +26,44 @@ class Post extends Component {
     console.log(dispatch);
     e.preventDefault();
 
-    const { user, previewURL, largeImageURL,tags } = this.state;
+    const { user, previewURL, largeImageURL, tags } = this.state;
+
+    ////////////////// state name change
+    const imageFile = e.target.elements[1].files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    console.log(imageUrl);
+    //  this.setState(...this.state, { fileURL: imageUrl });
+
     const newPost = {
       user,
-      previewURL,
-      largeImageURL,
-      tags
+      previewURL: imageUrl,
+      largeImageURL: imageUrl,
+      tags,
+      likes: 0,
+      comments: 0,
+      favorites: 0,
     };
+
+
+    // console.log(imageUrl);
+    // console.log(e.target.elements[1].files[0].name);
+
+    // const formData = new FormData();
+    // formData.append('file', e.target.elements[1].files[0].name);
+    // let formatedFilePath = formData.get("file");
+    // console.log("formated file", formData.get("file"));
+
+    // const newPost = {
+    //   user,
+    //   previewURL: formData.get("file"),
+    //   largeImageURL: formData.get("file"),
+    //   tags
+    // };
+    ////////////////// state name change
 
     console.log(newPost);
     dispatch({ type: "UPLOAD", payload: newPost });
-    this.props.history.push({pathname:'/feed'})
+    this.props.history.push({ pathname: '/feed' });
   };
 
   render() {
@@ -48,7 +75,7 @@ class Post extends Component {
           return (
             <>
               <h1> POST</h1>
-              <form 
+              <form
                 onSubmit={
                   this.onSubmit.bind(this, dispatch)}
               >
@@ -71,11 +98,12 @@ class Post extends Component {
                   name="previewURL"
                   placeholder="Choose a image"
                   onChange={this.onChange}
+                  accept="image/*"
                 />
 
                 <br />
                 <br />
-                    
+
                 <label>Tag: </label>
                 <input
                   type="text"
@@ -94,6 +122,8 @@ class Post extends Component {
                 <br />
 
               </form>
+
+              <img src={this.fileURL}></img>
             </>
           );
         }}

@@ -9,7 +9,7 @@ import Context from "../../Contexts/PostContext";
 
 const Feed = () => {
 
-  const { images, dispatchImage } = useContext(FeedContext);
+  const { images, dispatchImage, submitFlg } = useContext(FeedContext);
   const { files, dispatch } = useContext(Context);
 
   console.log("images object is ", images);
@@ -25,7 +25,6 @@ const Feed = () => {
     }
   }, []);
 
-
   //private state hook for modal pop up
   const [modalStyle, setModalStyle] = useState({ "display": "none" });
   const [targetImage, setTargetImage] = useState({});
@@ -38,6 +37,7 @@ const Feed = () => {
 
     //find the target object
     let targetPhoto = images.imageData.find(e => e.id === id);
+    console.log(targetPhoto);
 
     //increment or decriment like/ unlike count
     let updatedImgObj;
@@ -46,6 +46,13 @@ const Feed = () => {
         updatedImgObj = Object.assign(targetPhoto, { likes: targetPhoto["likes"] + 1 })
         : updatedImgObj = Object.assign(targetPhoto, { comments: targetPhoto["comments"] - 1 });
     }
+
+    // if (e.target.className === "likes") {
+    //   updatedImgObj = Object.assign(targetPhoto, { likes: targetPhoto["likes"] + 1 });
+    // } else (targetPhoto["likes"] !== 0) {
+    //   console.log("can unlike");
+    //   updatedImgObj = Object.assign(targetPhoto, { comments: targetPhoto["comments"] - 1 });
+    // }
 
     //update the state
     dispatchImage({ type: "LIKE", payload: updatedImgObj });
@@ -81,6 +88,7 @@ const Feed = () => {
   const postComment = (e) => {
     e.preventDefault();
     dispatchImage({ type: "ADD_COMMENTS", payload: comments });
+    setComments("");
   };
 
   return (
@@ -157,22 +165,6 @@ const Feed = () => {
                             <p>{elem}</p>
                           </blockquote>
                         ))}
-
-                        {/* {images.comments.length !== 0 ? (
-                          {images.comments.map((elem, index) => {
-                              <blockquote className="blockquote mb-0">
-                                <p>
-                                  {' '}
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                  erat a ante.{' '}
-                                </p>
-                                <footer className="blockquote-footer">
-                                  Someone famous in <cite title="Source Title">Source Title</cite>
-                                </footer>
-                              </blockquote>;
-                            })}
-
-                        ) : (console.log("comments not yet added"))} */}
                       </Card.Body>
                     </Card>
 
