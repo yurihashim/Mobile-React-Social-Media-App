@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Form, Button } from 'react-bootstrap';
 import { FaSearch, FaHeart, FaPhotoVideo, FaUserCircle } from "react-icons/fa";
 import "./Header.css";
+import FeedContext from '../../Contexts/FeedContext';
 
 const Header = () => {
+
+  const { keyword, setKeyword, submitFlg, setSubmitFlg } = useContext(FeedContext);
+  const [alert, setAlert] = useState("");
+
+  const searchImage = (e) => {
+    console.log(keyword, submitFlg);
+    e.preventDefault();
+
+    console.log(e);
+
+    if (e.target[0].value === "") {
+      setAlert("Please enter search keyword");
+    } else {
+      setKeyword(keyword);
+      setSubmitFlg(true);
+    }
+  };
 
   return (
     <>
@@ -27,10 +45,16 @@ const Header = () => {
             className="linkItem"><FaUserCircle /></Link>
         </header>
 
+
+
         {/* Search Form */}
-        <Form className="col-4 searchForm">
+        <Form className="col-8 searchForm" onSubmit={searchImage}>
+          {alert ? (<p className="alert">{alert}</p>) : ""}
           <Form.Group>
-            <Form.Control type="text" placeholder=" Search" />
+            <Form.Control type="text" placeholder="Search..."
+              onChange={e => setKeyword(e.target.value)}
+              onFocus={() => setKeyword("")}
+              value={keyword} />
           </Form.Group>
           <Button type="submit" className="searchBtn">
             <FaSearch />
