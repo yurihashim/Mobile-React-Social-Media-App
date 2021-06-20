@@ -1,0 +1,45 @@
+@import "../../color";
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 50px 300px;
+    border: solid 0.2rem $light;
+    padding: 10px;
+
+    .form-group{
+        margin: 20px;
+        align-items: center;
+
+        .form-label{
+            margin-right: 100px;
+        }
+
+        .form-control {
+            text-align: center;
+            border: 0.2rem solid $light;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+            &:active {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+        .submit{
+            margin-top: 50px;
+            padding-left: 30px;
+            padding-right: 80px;
+            &:hover,
+            &:focus {
+                cursor: pointer;
+                background-color: $white;
+                outline: none;
+                box-shadow: none;
+            }
+            
+        }
+    }
+}
