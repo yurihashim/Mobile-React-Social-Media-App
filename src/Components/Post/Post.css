@@ -1,1 +1,56 @@
-/* No CSS *//*# sourceMappingURL=Post.css.map */
+/* color palette*/
+.Form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  margin: 50px 300px;
+  border: solid 0.2rem #f0dce2;
+  padding: 10px;
+}
+
+.Form .form-group {
+  margin: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Form .form-group .form-label {
+  margin-right: 100px;
+}
+
+.Form .form-group .form-control {
+  text-align: center;
+  border: 0.2rem solid #f0dce2;
+}
+
+.Form .form-group .form-control:focus {
+  outline: none;
+  border: none;
+}
+
+.Form .form-group .form-control:active {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.Form .form-group .submit {
+  margin-top: 50px;
+  padding-left: 30px;
+  padding-right: 80px;
+}
+
+.Form .form-group .submit:hover, .Form .form-group .submit:focus {
+  cursor: pointer;
+  background-color: white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=Post.css.map */

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-//import axios from "axios"; 
+import "./Post.css"
 import { Consumer } from "../../Contexts/PostContext";
+import { Col, Form, InputGroup, Row, } from "react-bootstrap"
 
 class Post extends Component {
   ////////////////// state name change
@@ -27,11 +28,18 @@ class Post extends Component {
     e.preventDefault();
 
     const { user, previewURL, largeImageURL,tags } = this.state;
+    const imageFile = e.target.elements[1].files[0]; 
+    const imageUrl = URL.createObjectURL(imageFile); 
+    console.log(imageUrl); 
+
     const newPost = {
       user,
-      previewURL,
-      largeImageURL,
-      tags
+      previewURL : imageUrl,
+      largeImageURL : imageUrl,
+      tags,
+      likes:0,
+      comments:0,
+      favorites:0
     };
 
     console.log(newPost);
@@ -48,52 +56,74 @@ class Post extends Component {
           return (
             <>
               <h1> POST</h1>
-              <form 
+              <Form className="Form" 
                 onSubmit={
                   this.onSubmit.bind(this, dispatch)}
               >
-                <label>Name: </label>
-                <input
-                  type="text"
-                  value={user}
-                  name="user"
-                  placeholder="Enter your name"
-                  onChange={this.onChange}
-                />
+                <Form.Group as={Row} controlId="formUser">
+                  <Form.Label  column sm={1}>User Name</Form.Label>
+                  <Col sm={5}>
+                    <Form.Control className="user"
+                      type="text"
+                      value={user}
+                      name="user"
+                      placeholder="Enter your username"
+                      onChange={this.onChange}
+                    />
+                  </Col>
+                </Form.Group>
 
+                   <br />
+                   <br />
+                <Form.Group as={Row} controlId="formImage">
+                  <Form.Label column sm={1}>Image</Form.Label>
+                  <Col sm={5}>
+                    <Form.File
+                      type="file"
+                      value={previewURL}
+                      name="previewURL"
+                      placeholder="Choose a image"
+                      onChange={this.onChange}
+                      accept="image/*"
+                     />
+                  </Col>
+                </Form.Group>
+
+                  <br />
+                  <br />
+                
+                <Form.Group as={Row} controlId="formTag">
+                  <Form.Label column sm={1}> Tag </Form.Label>
+                  <Col sm={5}>
+                    <Form.Control rows ={5}
+                      type="text"
+                      value={tags}
+                      name="tags"
+                      placeholder="Enter tag"
+                      onChange={this.onChange}
+                    />
+                  </Col>
+                </Form.Group>
+
+                
+                <Form.Group as={Row} controlId="formSubmit">
+                  <Col sm={2}>
+                  <Form.Control className="submit"
+                    type="submit"
+                    value="submit"
+                  />
+                  </Col>
+                </Form.Group>
+  
                 <br />
                 <br />
 
-                <label>Image</label>
-                <input
-                  type="file"
-                  value={previewURL}
-                  name="previewURL"
-                  placeholder="Choose a image"
-                  onChange={this.onChange}
-                />
+              </Form>
 
-                <br />
-                <br />
-                    
-                <label>Tag: </label>
-                <input
-                  type="text"
-                  value={tags}
-                  name="tags"
-                  placeholder="Enter tag"
-                  onChange={this.onChange}
-                />
+              <footer className="footer">
+                <p>@Team Yuki M. & Yuri H. 2021 All right reserved.</p>
+              </footer>
 
-                <input
-                  type="submit"
-                  value="submit"
-                />
-
-                <br />
-                <br />
-
-              </form>
             </>
           );
         }}
