@@ -1,8 +1,5 @@
 const FeedReducer = (state, action) => {
 
-  console.log("inside reducer state is ", state);
-  console.log("action.payload is ", action.payload);
-
   switch (action.type) {
     case "FETCH_SUCCESS":
       return {

@@ -37,6 +37,9 @@ const App = () => {
                 <Route exact path="/login" />
               </Switch>
               {/* Footer */}
+              <footer className="footer">
+                <p>@Team Yuki M. & Yuri H. 2021 All right reserved.</p>
+              </footer>
               {/* <Footer /> */}
             </ScrollToTop>
           </Router>

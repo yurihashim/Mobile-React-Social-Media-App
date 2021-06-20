@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Form, Button } from 'react-bootstrap';
 import { FaSearch, FaHeart, FaPhotoVideo, FaUserCircle } from "react-icons/fa";
@@ -7,8 +7,7 @@ import FeedContext from '../../Contexts/FeedContext';
 
 const Header = () => {
 
-  const { keyword, setKeyword, setSubmitFlg } = useContext(FeedContext);
-  const [alert, setAlert] = useState("");
+  const { keyword, setKeyword, setSubmitFlg, alert, setAlert } = useContext(FeedContext);
 
   const searchImage = (e) => {
     e.preventDefault();
@@ -16,6 +15,7 @@ const Header = () => {
     //input validation check
     if (e.target[0].value === "") {
       setAlert("Please enter search keyword");
+      setTimeout(() => { setAlert(""); }, 2000);
     } else {
       setKeyword(keyword);
       setSubmitFlg(true);
@@ -45,7 +45,7 @@ const Header = () => {
 
 
         {/* Search Form */}
-        <Form className="col-6 searchForm" onSubmit={searchImage}>
+        <Form className="col searchForm" onSubmit={searchImage}>
           {alert && <p className="alert">{alert}</p>}
           <Form.Group>
             <Form.Control type="text" placeholder="Search..."

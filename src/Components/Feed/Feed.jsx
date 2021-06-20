@@ -1,19 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 import "./Feed.css";
 import { Row, Col, Button, Form, Card } from 'react-bootstrap';
-import { FaHeart, FaCommentDots, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+import { FaHeart, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import FeedContext from "../../Contexts/FeedContext";
 import Context from "../../Contexts/PostContext";
 
 const Feed = () => {
 
-  const { images, dispatchImage } = useContext(FeedContext);
+  const { images, dispatchImage, alert, setAlert } = useContext(FeedContext);
   const { files } = useContext(Context);
 
   console.log("images object is ", images);
-
-  console.log("files", files); //files[0] = array of onject
 
   useEffect(() => {
     //set "files" into "images" state in FeetContext
@@ -57,19 +55,17 @@ const Feed = () => {
     let targetPhoto = images.imageData.find(e => e.id === id);
 
     //check if it is already in the local storage
-
-
-
-
-    //update the object before dispatching : array of object
-    let updatedImgObj = Object.assign(targetPhoto, { favorites: targetPhoto["favorites"] + 1 });
-
-    //update the state
-    dispatchImage({ type: "ADD_FAVORITES", payload: updatedImgObj });
+    if (images.favorite.find(e => e.id === targetPhoto.id)) {
+      setAlert("The photo is already in your Favorite Collection");
+      setTimeout(() => { setAlert(""); }, 2000);
+    } else {
+      let updatedImgObj = Object.assign(targetPhoto, { favorites: targetPhoto["favorites"] + 1 });
+      dispatchImage({ type: "ADD_FAVORITES", payload: updatedImgObj });
+    }
   };
 
   //================== methods for modal ================== 
-  const openModal = (e, id) => {
+  const openModal = (id) => {
     //find which modal should open
     let clickedImgObj = images.imageData.find(e => e.id === id);
     setTargetImage(clickedImgObj);
@@ -83,8 +79,16 @@ const Feed = () => {
   //================== Post comments ================== 
   const postComment = (e) => {
     e.preventDefault();
-    dispatchImage({ type: "ADD_COMMENTS", payload: comments });
-    setComments("");
+    console.log(e.target[0].value);
+    //validation check
+    if (e.target[0].value === "") {
+      console.log("I am here");
+      setAlert("Please add your comments");
+      setTimeout(() => { setAlert(""); }, 2000);
+    } else {
+      dispatchImage({ type: "ADD_COMMENTS", payload: comments });
+      setComments("");
+    }
   };
 
   return (
@@ -96,9 +100,9 @@ const Feed = () => {
               <>
                 <Col className="col" key={index}>
                   <div className="imagPanel">
-                    <img src={elem.previewURL} alt={elem.tags} />
+                    <img src={elem.largeImageURL} alt={elem.tags} />
                     {/* show when hovered */}
-                    <button className="hoverText" type="button" onClick={e => openModal(e, elem.id)}>
+                    <button className="hoverText" type="button" onClick={e => openModal(elem.id)}>
                       <p className="tag"># {elem.tags}</p>
                       <div className="buttons">
                         <span
@@ -153,7 +157,7 @@ const Feed = () => {
                       <Card.Body >
                         <blockquote className="blockquote mb-0">
                           <p className="commentNum"># 1</p>
-                          <p>Awesome photo!!</p>
+                          <p>Awesome!! Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
                         </blockquote>
                         {images.comments.map((elem, index) => (
                           <blockquote className="blockquote mb-0" key={index}>
@@ -167,13 +171,16 @@ const Feed = () => {
                     <Form onSubmit={postComment}>
                       <Form.Group>
                         <Form.Control type="text" placeholder="Add a comment..."
-                          onChange={e => { setComments(e.target.value); console.log("adding comments"); }}
+                          onChange={e => { setComments(e.target.value); }}
+                          onFocus={e => { setAlert(""); }}
                           value={comments}
                         />
                       </Form.Group>
                       <Button type="submit" variant="outline-info" className="postBtn">Post</Button>
                     </Form>
 
+                    {/* alert */}
+                    {alert && <p className="alert">{alert}</p>}
                   </Col>
 
                 </Row>

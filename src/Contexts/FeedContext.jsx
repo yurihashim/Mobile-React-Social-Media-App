@@ -9,17 +9,11 @@ const FeedProvider = (props) => {
   //global state
   const [keyword, setKeyword] = useState("Travel");
   const [submitFlg, setSubmitFlg] = useState(true);
+  const [alert, setAlert] = useState("");
 
   const API = {
     ENDPOINT: "https://pixabay.com/api/",
     API_KEY: "22112901-d9ab6e677acd5ee1c4e0a636d"
-  };
-
-  //initial state for the reducer
-  const initialState = {
-    imageData: [],
-    favorite: [],
-    comments: []
   };
 
   //Reducer (*** initialState is ignored. third arguments prioritized)
@@ -43,8 +37,6 @@ const FeedProvider = (props) => {
               throw imgRes.statusText;
             } else {
               const imgData = await imgRes.json();
-              console.log(imgData);
-
               dispatchImage({ type: "FETCH_SUCCESS", payload: imgData });
               setSubmitFlg(false);
             }
@@ -70,7 +62,9 @@ const FeedProvider = (props) => {
         images,
         dispatchImage,
         submitFlg,
-        setSubmitFlg
+        setSubmitFlg,
+        alert, 
+        setAlert
       }}>
         {props.children}
       </FeedContext.Provider>
