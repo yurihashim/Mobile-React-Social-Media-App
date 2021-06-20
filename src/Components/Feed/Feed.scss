@@ -3,6 +3,7 @@
 .feedContainer {
   margin-top: 50px;
   padding-top: 2rem;
+  min-height: 90vh;
   .imgRow {
     // width: 80%;
     margin: auto;
@@ -217,4 +218,8 @@
       }
     }
   }
+}
+.loading {
+  text-align: center;
+  font-family: "Dancing Script", cursive;
 }

@@ -2,6 +2,7 @@
 .feedContainer {
   margin-top: 50px;
   padding-top: 2rem;
+  min-height: 90vh;
   /* Modal */
 }
 
@@ -266,5 +267,10 @@
   color: #dc3b31;
   font-weight: bold;
   padding: 0 0.5rem;
+}
+
+.loading {
+  text-align: center;
+  font-family: "Dancing Script", cursive;
 }
 /*# sourceMappingURL=Feed.css.map */

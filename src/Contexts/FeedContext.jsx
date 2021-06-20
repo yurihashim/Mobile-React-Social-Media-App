@@ -19,10 +19,11 @@ const FeedProvider = (props) => {
   //Reducer (*** initialState is ignored. third arguments prioritized)
   const [images, dispatchImage] = useReducer(FeedReducer, [], () => {
     const localFavoriteData = localStorage.getItem("favorite");
+    const localCommentsData = localStorage.getItem("comments");
     return {
       imageData: [],
       favorite: localFavoriteData ? JSON.parse(localFavoriteData) : [],
-      comments: []
+      comments: localCommentsData ? JSON.parse(localCommentsData) : [],
     };
   });
 
@@ -54,6 +55,11 @@ const FeedProvider = (props) => {
     localStorage.setItem("favorite", JSON.stringify(images.favorite));
   }, [images.favorite]);
 
+  //Add comments into LocalStorage
+  useEffect(() => {
+    localStorage.setItem("comments", JSON.stringify(images.comments));
+  }, [images.comments]);
+
   return (
     <>
       <FeedContext.Provider value={{
@@ -63,7 +69,7 @@ const FeedProvider = (props) => {
         dispatchImage,
         submitFlg,
         setSubmitFlg,
-        alert, 
+        alert,
         setAlert
       }}>
         {props.children}

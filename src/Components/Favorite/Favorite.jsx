@@ -48,7 +48,7 @@ const Favorite = () => {
                 return (<><h2>Your Favorite Photo Collection</h2><Row className="layout2">{html}</Row></>);
               })()
             ))
-          : (<h2>No collection added yet</h2>)}
+          : (<h2>No collection added yet :)</h2>)}
 
       </div>
     </>
