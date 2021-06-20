@@ -9,7 +9,7 @@
           flex-direction: column;
   position: relative;
   margin: 50px 300px;
-  border: solid 0.2rem #f0dce2;
+  border: solid 0.2rem #e6c4ce;
   padding: 10px;
 }
 
@@ -26,7 +26,7 @@
 
 .Form .form-group .form-control {
   text-align: center;
-  border: 0.2rem solid #f0dce2;
+  border: 0.2rem solid #e6c4ce;
 }
 
 .Form .form-group .form-control:focus {

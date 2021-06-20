@@ -26,7 +26,7 @@ class Post extends Component {
 
     const { user, tags } = this.state;
     const imageFile = e.target.elements[1].files[0];
-    const imageUrl = URL.createObjectURL(imageFile);
+    const imageUrl = window.URL.createObjectURL(imageFile);
 
     const newPost = {
       user,
@@ -116,9 +116,9 @@ class Post extends Component {
 
               </Form>
 
-              <footer className="footer">
+              {/* <footer className="footer">
                 <p>@Team Yuki M. & Yuri H. 2021 All right reserved.</p>
-              </footer>
+              </footer> */}
             </>
           );
         }}

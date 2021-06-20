@@ -9,7 +9,7 @@ const FeedReducer = (state, action) => {
     case "UPLOAD":
       return {
         ...state,
-        imageData: [action.payload[0], ...state.imageData]
+        imageData: [{ ...action.payload[0], id: Date.now() }, ...state.imageData]
       };
     case "LIKE":
       return {
