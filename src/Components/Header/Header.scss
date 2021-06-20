@@ -26,7 +26,7 @@
       color: $baseColor;
       font-size: 1.5rem;
     }
-    .likes {
+    .favorite {
       color: $accent2;
     }
   }
@@ -65,15 +65,16 @@
       }
     }
     .searchBtn {
-      background-color: $white;
+      background-color: $accent1;
       border: 0.1rem groove $accent1;
-      color: $baseColor;
+      color: $white;
       &:hover,
       &:focus {
         background-color: $accent2;
         color: $white;
         outline: none;
         box-shadow: none;
+        font-weight: bold;
       }
     }
   }

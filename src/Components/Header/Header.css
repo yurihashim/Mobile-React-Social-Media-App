@@ -13,7 +13,7 @@
   height: 50px;
   padding: 0 1rem;
   border-bottom: 0.1rem groove lightgray;
-  background-color: #f0dce2;
+  background-color: #e6c4ce;
   /* header */
   /* Alert */
   /* search */
@@ -48,7 +48,7 @@
   font-size: 1.5rem;
 }
 
-.navbar header .likes {
+.navbar header .favorite {
   color: #dc3b31;
 }
 
@@ -102,9 +102,9 @@
 }
 
 .navbar .searchForm .searchBtn {
-  background-color: white;
+  background-color: #f17f73;
   border: 0.1rem groove #f17f73;
-  color: #363432;
+  color: white;
 }
 
 .navbar .searchForm .searchBtn:hover, .navbar .searchForm .searchBtn:focus {
@@ -113,5 +113,6 @@
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+  font-weight: bold;
 }
 /*# sourceMappingURL=Header.css.map */
