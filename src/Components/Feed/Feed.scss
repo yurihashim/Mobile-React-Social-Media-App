@@ -167,6 +167,7 @@
           }
         }
       }
+      /* comments */
       .commentArea {
         margin: 1rem 0;
         overflow-y: scroll;
@@ -208,6 +209,11 @@
         .postBtn {
           margin-bottom: 1rem;
         }
+      }
+      .alert {
+        color: $accent2;
+        font-weight: bold;
+        padding: 0 0.5rem;
       }
     }
   }

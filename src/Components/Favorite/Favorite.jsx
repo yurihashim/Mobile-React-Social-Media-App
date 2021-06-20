@@ -1,41 +1,38 @@
 import React, { useContext } from 'react';
 import "./Favorite.css";
-import { Row, Col, Button, Form, Card } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import FeedContext from "../../Contexts/FeedContext";
 
 const Favorite = () => {
-  const { images, dispatchImage } = useContext(FeedContext);
-
-  console.log("in likes.jsx", images);
+  const { images } = useContext(FeedContext);
 
   return (
     <>
       <div className="favoriteContainer">
-        <h1>Your Favorite Photo Collection</h1>
+        <h2>Your Favorite Photo Collection</h2>
         {images.favorite.length !== 0 ? (
           <>
-            {images.favorite.map((elem, index) => (
-              <>
-                {() => {
-                  for (let i = 0; i < images.favorite.length; i++) {
-                    return (
-                      <>
-                        <Row>
-                          <Col><img src={elem[0].previewURL} alt="likeImg"></img></Col>
-                          <Col><img src={elem[1].previewURL} alt="likeImg"></img></Col>
-                        </Row>
-                        <Row>
-                          <Col>1 of 3</Col>
-                          <Col>2 of 3</Col>
-                          <Col>3 of 3</Col>
-                        </Row>
-                      </>;
-                    )
-                  }
-                }}
+            <Row className="topFavorite">
+              <Col className="left">
+                <img src={images.favorite[0].largeImageURL} alt="favorite1"></img>
+                <img src={images.favorite[1].largeImageURL} alt="favorite2"></img>
+              </Col>
+              <Col className="right">
+                <img src={images.favorite[2].largeImageURL} alt="favorite3"></img>
+              </Col>
+            </Row>
 
-              </>
-            ))}
+            {/* layout change */}
+            {(() => {
+              const html = [];
+              for (let i = 3; i < images.favorite.length; i++) {
+                html.push(
+                  <Col className="col-4"><img src={images.favorite[i].largeImageURL} alt="favorite3"></img></Col>
+                );
+              }
+              return <Row className="bottomFavorite">{html}</Row>;
+            })()}
+
           </>
         ) : (<h2>No collection added yet</h2>)}
 

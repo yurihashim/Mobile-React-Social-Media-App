@@ -72,6 +72,7 @@
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  margin-left: 7rem;
 }
 
 .navbar .searchForm .form-group {

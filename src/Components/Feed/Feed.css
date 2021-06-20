@@ -132,6 +132,7 @@
           transform: translate(-50%, -50%);
   color: white;
   width: 80%;
+  /* comments */
 }
 
 .feedContainer .modalContainer .imageModal .largeImg {
@@ -259,5 +260,11 @@
 
 .feedContainer .modalContainer .imageModal form .postBtn {
   margin-bottom: 1rem;
+}
+
+.feedContainer .modalContainer .imageModal .alert {
+  color: #dc3b31;
+  font-weight: bold;
+  padding: 0 0.5rem;
 }
 /*# sourceMappingURL=Feed.css.map */
