@@ -22,7 +22,6 @@ const Feed = () => {
   //private state hook for modal pop up
   const [modalStyle, setModalStyle] = useState({ "display": "none" });
   const [targetImage, setTargetImage] = useState({});
-  const [targetComment, setTargetComments] = useState([]);
   const [comments, setComments] = useState({});
 
   //================== increment/decrement the like count ================== 
@@ -73,17 +72,11 @@ const Feed = () => {
     //filter out all the comments for the targetPhoto
     let allComments = images.comments.filter(e => e.id === id);
 
-    console.log(clickedImgObj);
-    console.log("all comments are ", allComments);
     setTargetImage({
       imgObj: clickedImgObj,
       comments: allComments
     });
 
-    console.log("targetimage is", targetImage.comments);
-
-    // console.log(allComments);
-    // setTargetComments(allComments);
     setModalStyle({ "display": "block" });
   };
 
@@ -100,7 +93,6 @@ const Feed = () => {
       setAlert("Please add your comments");
       setTimeout(() => { setAlert(""); }, 2000);
     } else {
-      console.log("I am here");
       dispatchImage({ type: "ADD_COMMENTS", payload: comments });
       setComments({ ...comments, comment: "" });
     }

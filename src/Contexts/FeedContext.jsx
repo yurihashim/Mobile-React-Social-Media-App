@@ -44,7 +44,6 @@ const FeedProvider = (props) => {
           })()
         );
       }
-
     } catch (error) {
       console.error(`Failed to fetch image data. Error= ${error}`);
     }

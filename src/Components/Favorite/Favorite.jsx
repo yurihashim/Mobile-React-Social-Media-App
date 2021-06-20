@@ -7,8 +7,6 @@ import FadeIn from 'react-fade-in';
 const Favorite = () => {
   const { images } = useContext(FeedContext);
 
-  console.log(images);
-
   return (
     <>
       <FadeIn>
