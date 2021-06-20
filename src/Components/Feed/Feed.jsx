@@ -3,6 +3,7 @@ import "./Feed.css";
 import { Row, Col, Button, Form, Card } from 'react-bootstrap';
 import { FaHeart, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import FadeIn from 'react-fade-in';
 import FeedContext from "../../Contexts/FeedContext";
 import Context from "../../Contexts/PostContext";
 
@@ -108,107 +109,109 @@ const Feed = () => {
   return (
     <>
       {images ? (
-        <div className="feedContainer">
-          <Row className="imgRow row row-cols-5">
-            {images.imageData.map((elem, index) => (
+        <FadeIn>
+          <div className="feedContainer">
+            <Row className="imgRow row row-cols-5">
+              {images.imageData.map((elem, index) => (
+                <>
+                  <Col className="col" key={index}>
+                    <div className="imagPanel">
+                      <img src={elem.largeImageURL} alt={elem.tags} />
+                      {/* show when hovered */}
+                      <button className="hoverText" type="button" onClick={e => openModal(elem.id)}>
+                        <p className="tag"># {elem.tags}</p>
+                        <div className="buttons">
+                          <span
+                            className="likes"
+                            onClick={e => handleClick(e, elem.id)}><FaThumbsUp /> {elem.likes}</span>
+                          <span
+                            className="unlikes"
+                            onClick={e => handleClick(e, elem.id)}><FaThumbsDown /> {elem.comments}</span>
+                          <span
+                            className="favorites"
+                            onClick={(e) => { addToFavorite(e, elem.id); }}><FaHeart /> {elem.favorites}</span>
+                        </div>
+                        <p className="username">{elem.user}</p>
+                      </button>
+                    </div>
+                  </Col>
+                </>
+              ))}
+            </Row>
+
+            {/* Modal */}
+            {targetImage.imgObj && (
               <>
-                <Col className="col" key={index}>
-                  <div className="imagPanel">
-                    <img src={elem.largeImageURL} alt={elem.tags} />
-                    {/* show when hovered */}
-                    <button className="hoverText" type="button" onClick={e => openModal(elem.id)}>
-                      <p className="tag"># {elem.tags}</p>
+                <div className="modalContainer" style={modalStyle}>
+                  <button className="clsBtn" onClick={hideModal}><ImCross /></button>
+                  <Row className="imageModal">
+                    <img className="col col-8 largeImg" src={targetImage.imgObj.largeImageURL} alt="largeImage" />
+
+                    <Col className="col-4 userInfo">
+                      <div className="user">
+                        <img src={targetImage.imgObj.userImageURL} alt="userImg" />
+                        <div className="right">
+                          <p>{targetImage.imgObj.user}</p>
+                          <p className="tag"># {targetImage.imgObj.tags}</p>
+                        </div>
+                      </div>
+
                       <div className="buttons">
                         <span
                           className="likes"
-                          onClick={e => handleClick(e, elem.id)}><FaThumbsUp /> {elem.likes}</span>
+                          onClick={e => handleClick(e, targetImage.imgObj.id)}><FaThumbsUp /> {targetImage.imgObj.likes}</span>
                         <span
                           className="unlikes"
-                          onClick={e => handleClick(e, elem.id)}><FaThumbsDown /> {elem.comments}</span>
+                          onClick={e => handleClick(e, targetImage.imgObj.id)}><FaThumbsDown /> {targetImage.imgObj.comments}</span>
                         <span
                           className="favorites"
-                          onClick={(e) => { addToFavorite(e, elem.id); }}><FaHeart /> {elem.favorites}</span>
+                          onClick={(e) => { addToFavorite(e, targetImage.imgObj.id); }}><FaHeart /> {targetImage.imgObj.favorites}</span>
                       </div>
-                      <p className="username">{elem.user}</p>
-                    </button>
-                  </div>
-                </Col>
-              </>
-            ))}
-          </Row>
 
-          {/* Modal */}
-          {targetImage.imgObj && (
-            <>
-              <div className="modalContainer" style={modalStyle}>
-                <button className="clsBtn" onClick={hideModal}><ImCross /></button>
-                <Row className="imageModal">
-                  <img className="col col-8 largeImg" src={targetImage.imgObj.largeImageURL} alt="largeImage" />
-
-                  <Col className="col-4 userInfo">
-                    <div className="user">
-                      <img src={targetImage.imgObj.userImageURL} alt="userImg" />
-                      <div className="right">
-                        <p>{targetImage.imgObj.user}</p>
-                        <p className="tag"># {targetImage.imgObj.tags}</p>
-                      </div>
-                    </div>
-
-                    <div className="buttons">
-                      <span
-                        className="likes"
-                        onClick={e => handleClick(e, targetImage.imgObj.id)}><FaThumbsUp /> {targetImage.imgObj.likes}</span>
-                      <span
-                        className="unlikes"
-                        onClick={e => handleClick(e, targetImage.imgObj.id)}><FaThumbsDown /> {targetImage.imgObj.comments}</span>
-                      <span
-                        className="favorites"
-                        onClick={(e) => { addToFavorite(e, targetImage.imgObj.id); }}><FaHeart /> {targetImage.imgObj.favorites}</span>
-                    </div>
-
-                    {/* Comment input form */}
-                    <Card className="commentArea">
-                      <Card.Body >
-                        <blockquote className="blockquote mb-0">
-                          <p className="commentNum"># 1</p>
-                          <p>This is default comment applied to all photos :)</p>
-                        </blockquote>
-                        {images.comments.length !== 0 && (
-                          images.comments.filter(e => e.id === targetImage.imgObj.id).map((elem, index) => (
-                            <blockquote className="blockquote mb-0" key={index}>
-                              <p className="commentNum"># {index + 2}</p>
-                              <p>{elem.comment}</p>
-                            </blockquote>
-                          ))
-                        )}
-                        {/* {images.comments.map((elem, index) => (
+                      {/* Comment input form */}
+                      <Card className="commentArea">
+                        <Card.Body >
+                          <blockquote className="blockquote mb-0">
+                            <p className="commentNum"># 1</p>
+                            <p>This is default comment applied to all photos :)</p>
+                          </blockquote>
+                          {images.comments.length !== 0 && (
+                            images.comments.filter(e => e.id === targetImage.imgObj.id).map((elem, index) => (
+                              <blockquote className="blockquote mb-0" key={index}>
+                                <p className="commentNum"># {index + 2}</p>
+                                <p>{elem.comment}</p>
+                              </blockquote>
+                            ))
+                          )}
+                          {/* {images.comments.map((elem, index) => (
                           <blockquote className="blockquote mb-0" key={index}>
                             <p className="commentNum"># {index + 2}</p>
                             <p>{elem.comment}</p>
                           </blockquote>
                         ))} */}
-                      </Card.Body>
-                    </Card>
+                        </Card.Body>
+                      </Card>
 
-                    <Form onSubmit={postComment}>
-                      <Form.Group>
-                        <Form.Control type="text" placeholder="Add a comment..."
-                          onChange={e => { setComments({ id: targetImage.imgObj.id, comment: e.target.value }); }}
-                          onFocus={() => { setComments({ ...comments, comment: "" }); setAlert(""); }}
-                          value={comments.comment}
-                        />
-                      </Form.Group>
-                      <Button type="submit" variant="outline-info" className="postBtn">Post</Button>
-                    </Form>
+                      <Form onSubmit={postComment}>
+                        <Form.Group>
+                          <Form.Control type="text" placeholder="Add a comment..."
+                            onChange={e => { setComments({ id: targetImage.imgObj.id, comment: e.target.value }); }}
+                            onFocus={() => { setComments({ ...comments, comment: "" }); setAlert(""); }}
+                            value={comments.comment}
+                          />
+                        </Form.Group>
+                        <Button type="submit" variant="outline-info" className="postBtn">Post</Button>
+                      </Form>
 
-                    {/* alert */}
-                    {alert && <p className="alert">{alert}</p>}
-                  </Col>
-                </Row>
-              </div>
-            </>
-          )}
-        </div>
+                      {/* alert */}
+                      {alert && <p className="alert">{alert}</p>}
+                    </Col>
+                  </Row>
+                </div>
+              </>
+            )}
+          </div>
+        </FadeIn>
       ) : (<h1 className="loading">Loading...Hang on a sec...</h1>)};
     </>
   );
