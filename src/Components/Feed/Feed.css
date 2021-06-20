@@ -215,6 +215,10 @@
   padding-left: 1rem;
 }
 
+.feedContainer .modalContainer .imageModal .commentArea .card-body blockquote .commentNum {
+  margin-bottom: 0;
+}
+
 .feedContainer .modalContainer .imageModal form {
   display: -webkit-box;
   display: -ms-flexbox;
