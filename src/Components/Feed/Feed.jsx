@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import "./Feed.css";
 import { Row, Col, Button, Form, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { FaHeart, FaCommentDots, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import FeedContext from "../../Contexts/FeedContext";
@@ -9,20 +8,16 @@ import Context from "../../Contexts/PostContext";
 
 const Feed = () => {
 
-  const { images, dispatchImage, submitFlg } = useContext(FeedContext);
-  const { files, dispatch } = useContext(Context);
+  const { images, dispatchImage } = useContext(FeedContext);
+  const { files } = useContext(Context);
 
   console.log("images object is ", images);
 
   console.log("files", files); //files[0] = array of onject
 
   useEffect(() => {
-    {
-      files.length !== 0 ? (
-        //set "files" into "images" state
-        dispatchImage({ type: "UPLOAD", payload: files })
-      ) : console.log("First loading. Post not yet added");
-    }
+    //set "files" into "images" state in FeetContext
+    { files.length !== 0 && dispatchImage({ type: "UPLOAD", payload: files }); }
   }, []);
 
   //private state hook for modal pop up
@@ -37,22 +32,17 @@ const Feed = () => {
 
     //find the target object
     let targetPhoto = images.imageData.find(e => e.id === id);
-    console.log(targetPhoto);
 
-    //increment or decriment like/ unlike count
+    //increment or decriment like/ unlike count (* use comments counts instead of unlike count due to API )
     let updatedImgObj;
     {
-      e.target.className === "likes" ?
-        updatedImgObj = Object.assign(targetPhoto, { likes: targetPhoto["likes"] + 1 })
-        : updatedImgObj = Object.assign(targetPhoto, { comments: targetPhoto["comments"] - 1 });
+      e.target.className !== "likes" ?
+        (targetPhoto["comments"] !== 0 ?
+          (updatedImgObj = Object.assign(targetPhoto, { comments: targetPhoto["comments"] - 1 })) :
+          (updatedImgObj = Object.assign(targetPhoto, { comments: targetPhoto["comments"] }))
+        ) :
+        (updatedImgObj = Object.assign(targetPhoto, { likes: targetPhoto["likes"] + 1 }));
     }
-
-    // if (e.target.className === "likes") {
-    //   updatedImgObj = Object.assign(targetPhoto, { likes: targetPhoto["likes"] + 1 });
-    // } else (targetPhoto["likes"] !== 0) {
-    //   console.log("can unlike");
-    //   updatedImgObj = Object.assign(targetPhoto, { comments: targetPhoto["comments"] - 1 });
-    // }
 
     //update the state
     dispatchImage({ type: "LIKE", payload: updatedImgObj });
@@ -62,8 +52,14 @@ const Feed = () => {
   const addToFavorite = (e, id) => {
     e.stopPropagation(); //prevent modal pop up to open
     e.preventDefault();//prevent modal pop up to open
+
     //find the target object
     let targetPhoto = images.imageData.find(e => e.id === id);
+
+    //check if it is already in the local storage
+
+
+
 
     //update the object before dispatching : array of object
     let updatedImgObj = Object.assign(targetPhoto, { favorites: targetPhoto["favorites"] + 1 });
@@ -98,7 +94,7 @@ const Feed = () => {
           <Row className="imgRow row row-cols-5">
             {images.imageData.map((elem, index) => (
               <>
-                <Col>
+                <Col className="col" key={index}>
                   <div className="imagPanel">
                     <img src={elem.previewURL} alt={elem.tags} />
                     {/* show when hovered */}
@@ -132,13 +128,13 @@ const Feed = () => {
                   <img className="col col-8 largeImg" src={targetImage.largeImageURL} alt="largeImage" />
 
                   <Col className="col-4 userInfo">
-                    <p className="user">
+                    <div className="user">
                       <img src={targetImage.userImageURL} alt="userImg" />
                       <div className="right">
                         <p>{targetImage.user}</p>
                         <p className="tag"># {targetImage.tags}</p>
                       </div>
-                    </p>
+                    </div>
 
                     <div className="buttons">
                       <span
@@ -160,7 +156,7 @@ const Feed = () => {
                           <p>Awesome photo!!</p>
                         </blockquote>
                         {images.comments.map((elem, index) => (
-                          <blockquote className="blockquote mb-0">
+                          <blockquote className="blockquote mb-0" key={index}>
                             <p className="commentNum"># {index + 2}</p>
                             <p>{elem}</p>
                           </blockquote>
@@ -183,7 +179,7 @@ const Feed = () => {
                 </Row>
               </div>
             </>
-          ) : ""}
+          ) : (<h1>Loading...Hang on a sec</h1>)}
         </div>
       ) : (<h1>Loading...Hang on a sec</h1>)};
     </>

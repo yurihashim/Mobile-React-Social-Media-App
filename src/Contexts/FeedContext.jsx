@@ -7,7 +7,7 @@ const FeedContext = createContext();
 const FeedProvider = (props) => {
 
   //global state
-  const [keyword, setKeyword] = useState("Canada");
+  const [keyword, setKeyword] = useState("Travel");
   const [submitFlg, setSubmitFlg] = useState(true);
 
   const API = {
@@ -22,14 +22,21 @@ const FeedProvider = (props) => {
     comments: []
   };
 
-  //Reducer
-  const [images, dispatchImage] = useReducer(FeedReducer, initialState);
+  //Reducer (*** initialState is ignored. third arguments prioritized)
+  const [images, dispatchImage] = useReducer(FeedReducer, [], () => {
+    const localFavoriteData = localStorage.getItem("favorite");
+    return {
+      imageData: [],
+      favorite: localFavoriteData ? JSON.parse(localFavoriteData) : [],
+      comments: []
+    };
+  });
 
   //fetch default feed images
   useEffect(() => {
     try {
       {
-        submitFlg ? (
+        submitFlg && (
           (async () => {
             const imgRes = await fetch(`${API.ENDPOINT}?key=${API.API_KEY}&q=${keyword}&image_type=photo&pretty=true`);
             if (!imgRes.ok) {
@@ -42,13 +49,18 @@ const FeedProvider = (props) => {
               setSubmitFlg(false);
             }
           })()
-        ) : (console.log("search keyword not added yet"));
+        );
       }
 
     } catch (error) {
       console.error(`Failed to fetch image data. Error= ${error}`);
     }
   }, [keyword, submitFlg]);
+
+  //Add favorite item into LocalStorage
+  useEffect(() => {
+    localStorage.setItem("favorite", JSON.stringify(images.favorite));
+  }, [images.favorite]);
 
   return (
     <>

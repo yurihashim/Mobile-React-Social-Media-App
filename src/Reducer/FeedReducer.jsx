@@ -6,9 +6,13 @@ const FeedReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_SUCCESS":
       return {
-        imageData: action.payload.hits,
-        favorite: [],
-        comments: []
+        ...state,
+        imageData: action.payload.hits
+      };
+    case "UPLOAD":
+      return {
+        ...state,
+        imageData: [action.payload[0], ...state.imageData]
       };
     case "LIKE":
       return {
@@ -18,12 +22,7 @@ const FeedReducer = (state, action) => {
     case "ADD_FAVORITES":
       return {
         ...state,
-        favorite: [action.payload] //assigning after updated
-      };
-    case "UPLOAD":
-      return {
-        ...state,
-        imageData: [action.payload[0], ...state.imageData]
+        favorite: [action.payload, ...state.favorite] //assigning after updated
       };
     case "ADD_COMMENTS":
       return {
