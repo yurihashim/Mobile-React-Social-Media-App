@@ -175,12 +175,6 @@ const Feed = () => {
                               </blockquote>
                             ))
                           )}
-                          {/* {images.comments.map((elem, index) => (
-                          <blockquote className="blockquote mb-0" key={index}>
-                            <p className="commentNum"># {index + 2}</p>
-                            <p>{elem.comment}</p>
-                          </blockquote>
-                        ))} */}
                         </Card.Body>
                       </Card>
 
