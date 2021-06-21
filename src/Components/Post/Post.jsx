@@ -13,7 +13,7 @@ class Post extends Component {
     likes: 0,
     comments: 0,
     favorites: 0,
-    userImageURL: ""
+    userImageURL: "",
   };
 
   onChange = (e) => {
@@ -42,9 +42,26 @@ class Post extends Component {
       favorites:0
     };
 
+
+    // console.log(imageUrl);
+    // console.log(e.target.elements[1].files[0].name);
+
+    // const formData = new FormData();
+    // formData.append('file', e.target.elements[1].files[0].name);
+    // let formatedFilePath = formData.get("file");
+    // console.log("formated file", formData.get("file"));
+
+    // const newPost = {
+    //   user,
+    //   previewURL: formData.get("file"),
+    //   largeImageURL: formData.get("file"),
+    //   tags
+    // };
+    ////////////////// state name change
+
     console.log(newPost);
     dispatch({ type: "UPLOAD", payload: newPost });
-    this.props.history.push({pathname:'/feed'})
+    this.props.history.push({ pathname: '/feed' });
   };
 
   render() {
@@ -119,11 +136,6 @@ class Post extends Component {
                 <br />
 
               </Form>
-
-              <footer className="footer">
-                <p>@Team Yuki M. & Yuri H. 2021 All right reserved.</p>
-              </footer>
-
             </>
           );
         }}

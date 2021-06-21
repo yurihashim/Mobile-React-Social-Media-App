@@ -30,6 +30,14 @@
       color: $accent2;
     }
   }
+  /* Alert */
+  .alert {
+    width: 100%;
+    margin-bottom: 0;
+    text-align: right;
+    color: $accent2;
+    font-weight: bold;
+  }
   /* search */
   .searchForm {
     display: flex;
@@ -39,11 +47,10 @@
     .form-group {
       width: 100%;
       .form-control {
-        border: 0.1rem solid black;
+        border: 0.1rem groove $accent2;
         background-color: $white;
         outline: none;
         -webkit-appearance: button;
-        border-radius: unset;
         &:focus {
           outline: none;
           box-shadow: none;
@@ -58,13 +65,13 @@
       }
     }
     .searchBtn {
-      border-radius: unset;
       background-color: $white;
-      border: 0.1rem solid black;
-      color: black;
+      border: 0.1rem groove $accent1;
+      color: $baseColor;
       &:hover,
       &:focus {
-        background-color: $white;
+        background-color: $accent2;
+        color: $white;
         outline: none;
         box-shadow: none;
       }

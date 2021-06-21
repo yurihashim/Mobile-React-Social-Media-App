@@ -10,11 +10,6 @@ const Main = () => {
     <>
       {/* Feed -- default component */}
       <Feed />
-
-      <footer className="footer">
-            <p>@Team Yuki M. & Yuri H. 2021 All right reserved.</p>
-      </footer>
-
     </>
   );
 };
