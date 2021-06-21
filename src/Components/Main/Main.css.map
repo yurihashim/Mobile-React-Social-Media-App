@@ -1,9 +1,8 @@
 {
     "version": 3,
-    "mappings": "ACAA,kBAAkB;ADElB,AAAA,OAAO,CAAC;EACJ,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,uBAAuB;EACnC,gBAAgB,ECAZ,OAAO;EDCX,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,IAAI;EAChB,WAAW,EAAE,IAAI;CACpB",
+    "mappings": "",
     "sources": [
-        "Main.scss",
-        "../../_color.scss"
+        "Main.scss"
     ],
     "names": [],
     "file": "Main.css"

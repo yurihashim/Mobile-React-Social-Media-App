@@ -14,6 +14,7 @@ import ScrollToTop from "./Components/Router/ScrollToTop";
 import { FeedProvider } from "./Contexts/FeedContext";
 import { PostProvider } from "./Contexts/PostContext";
 import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer"; 
 
 const App = () => {
   return (
@@ -36,11 +37,7 @@ const App = () => {
                 <Route exact path="/post" component={Post} />
                 <Route exact path="/login" />
               </Switch>
-              {/* Footer */}
-              <footer className="footer">
-                <p>@Team Yuki M. & Yuri H. 2021 All right reserved.</p>
-              </footer>
-              {/* <Footer /> */}
+              <Footer />
             </ScrollToTop>
           </Router>
         </PostProvider>

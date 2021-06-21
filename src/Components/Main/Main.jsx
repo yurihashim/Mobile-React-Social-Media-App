@@ -6,10 +6,8 @@ import FadeIn from 'react-fade-in';
 const Main = () => {
   return (
     <>
-      <FadeIn>
-        {/* Feed -- default component */}
-        <Feed />
-      </FadeIn>
+      {/* Feed -- default component */}
+      <Feed />
     </>
   );
 };
