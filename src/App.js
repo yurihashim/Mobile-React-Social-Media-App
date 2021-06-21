@@ -15,6 +15,7 @@ import { FeedProvider } from "./Contexts/FeedContext";
 import { PostProvider } from "./Contexts/PostContext";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
+import Login from "./Components/Login/Login";
 
 const App = () => {
   return (
@@ -34,7 +35,7 @@ const App = () => {
                 <Route exact path="/feed" component={Feed} />
                 <Route exact path="/favorite" component={Favorite} />
                 <Route exact path="/post" component={Post} />
-                <Route exact path="/login" />
+                <Route exact path="/login" component={Login} />
               </Switch>
               {/* Footer */}
               <Footer />

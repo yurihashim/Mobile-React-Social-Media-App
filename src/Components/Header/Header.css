@@ -52,6 +52,12 @@
   color: #dc3b31;
 }
 
+.navbar header .loginUser {
+  margin-bottom: 0;
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
 .navbar .alert {
   width: 100%;
   margin-bottom: 0;
@@ -80,7 +86,7 @@
 }
 
 .navbar .searchForm .form-group .form-control {
-  border: 0.1rem groove #dc3b31;
+  border: 0.1rem solid #dc3b31;
   background-color: white;
   outline: none;
   -webkit-appearance: button;
@@ -104,7 +110,7 @@
 
 .navbar .searchForm .searchBtn {
   background-color: #f17f73;
-  border: 0.1rem groove #f17f73;
+  border: 0.1rem solid #f17f73;
   color: white;
 }
 

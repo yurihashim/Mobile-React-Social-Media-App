@@ -1,0 +1,67 @@
+@import "../../color";
+
+.loginContainer {
+  padding-top: 50px;
+  min-height: 80vh;
+  h2 {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .errorMsg {
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 0;
+    color: $accent2;
+  }
+  .loginForm {
+    width: 60%;
+    margin: auto;
+    .form-group {
+      margin-bottom: 1rem;
+      .form-control {
+        border: 0.1rem solid $accent2;
+        background-color: $white;
+        outline: none;
+        -webkit-appearance: button;
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+        &:active {
+          outline: none;
+          box-shadow: none;
+        }
+        &:-internal-autofill-selected {
+          background-color: transparent;
+        }
+      }
+    }
+    .logInBtn {
+      background-color: $accent1;
+      border: none;
+      color: $white;
+      margin-right: 1rem;
+      &:hover,
+      &:focus {
+        background-color: $accent2;
+        color: $white;
+        outline: none;
+        box-shadow: none;
+        font-weight: bold;
+      }
+    }
+    .logOutBtn {
+      outline: none;
+      background-color: $accent3;
+      color: $white;
+      &:hover,
+      &:focus {
+        color: $white;
+        outline: none;
+        box-shadow: none;
+        font-weight: bold;
+        background-color: $accent4;
+      }
+    }
+  }
+}

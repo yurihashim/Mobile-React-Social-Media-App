@@ -1,0 +1,81 @@
+/* color palette*/
+.loginContainer {
+  padding-top: 50px;
+  min-height: 80vh;
+}
+
+.loginContainer h2 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.loginContainer .errorMsg {
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 0;
+  color: #dc3b31;
+}
+
+.loginContainer .loginForm {
+  width: 60%;
+  margin: auto;
+}
+
+.loginContainer .loginForm .form-group {
+  margin-bottom: 1rem;
+}
+
+.loginContainer .loginForm .form-group .form-control {
+  border: 0.1rem solid #dc3b31;
+  background-color: white;
+  outline: none;
+  -webkit-appearance: button;
+}
+
+.loginContainer .loginForm .form-group .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.loginContainer .loginForm .form-group .form-control:active {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.loginContainer .loginForm .form-group .form-control:-internal-autofill-selected {
+  background-color: transparent;
+}
+
+.loginContainer .loginForm .logInBtn {
+  background-color: #f17f73;
+  border: none;
+  color: white;
+  margin-right: 1rem;
+}
+
+.loginContainer .loginForm .logInBtn:hover, .loginContainer .loginForm .logInBtn:focus {
+  background-color: #dc3b31;
+  color: white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: bold;
+}
+
+.loginContainer .loginForm .logOutBtn {
+  outline: none;
+  background-color: #31cbdc;
+  color: white;
+}
+
+.loginContainer .loginForm .logOutBtn:hover, .loginContainer .loginForm .logOutBtn:focus {
+  color: white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: bold;
+  background-color: #3897c0;
+}
+/*# sourceMappingURL=Login.css.map */

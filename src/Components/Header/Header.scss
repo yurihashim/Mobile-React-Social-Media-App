@@ -29,6 +29,11 @@
     .favorite {
       color: $accent2;
     }
+    .loginUser {
+      margin-bottom: 0;
+      margin-left: 1rem;
+      font-size: 2rem;
+    }
   }
   /* Alert */
   .alert {
@@ -48,7 +53,7 @@
     .form-group {
       width: 100%;
       .form-control {
-        border: 0.1rem groove $accent2;
+        border: 0.1rem solid $accent2;
         background-color: $white;
         outline: none;
         -webkit-appearance: button;
@@ -67,7 +72,7 @@
     }
     .searchBtn {
       background-color: $accent1;
-      border: 0.1rem groove $accent1;
+      border: 0.1rem solid $accent1;
       color: $white;
       &:hover,
       &:focus {

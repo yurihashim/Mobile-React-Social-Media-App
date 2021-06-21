@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState, useReducer } from 'react';
 import FeedReducer from '../Reducer/FeedReducer';
+import UserReducer from '../Reducer/UserReducer';
 
 //create context
 const FeedContext = createContext();
@@ -17,6 +18,7 @@ const FeedProvider = (props) => {
   };
 
   //Reducer (*** initialState is ignored. third arguments prioritized)
+  //#1 FeedReducer
   const [images, dispatchImage] = useReducer(FeedReducer, [], () => {
     const localFavoriteData = localStorage.getItem("favorite");
     const localCommentsData = localStorage.getItem("comments");
@@ -25,6 +27,12 @@ const FeedProvider = (props) => {
       favorite: localFavoriteData ? JSON.parse(localFavoriteData) : [],
       comments: localCommentsData ? JSON.parse(localCommentsData) : [],
     };
+  });
+
+  //#2 UserReducer
+  const [loginUser, dispatchUser] = useReducer(UserReducer, {}, () => {
+    const localUserData = localStorage.getItem("loginUser");
+    return localUserData ? JSON.parse(localUserData) : {};
   });
 
   //fetch default feed images
@@ -59,6 +67,11 @@ const FeedProvider = (props) => {
     localStorage.setItem("comments", JSON.stringify(images.comments));
   }, [images.comments]);
 
+  //Add login user into LocalStorage
+  useEffect(() => {
+    localStorage.setItem("loginUser", JSON.stringify(loginUser));
+  }, [loginUser]);
+
   return (
     <>
       <FeedContext.Provider value={{
@@ -69,7 +82,9 @@ const FeedProvider = (props) => {
         submitFlg,
         setSubmitFlg,
         alert,
-        setAlert
+        setAlert,
+        loginUser,
+        dispatchUser
       }}>
         {props.children}
       </FeedContext.Provider>

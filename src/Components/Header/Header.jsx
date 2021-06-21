@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Navbar, Form, Button } from 'react-bootstrap';
 import { FaSearch, FaHeart, FaPhotoVideo, FaUserCircle } from "react-icons/fa";
 import "./Header.css";
@@ -8,6 +8,8 @@ import FeedContext from '../../Contexts/FeedContext';
 const Header = () => {
 
   const { keyword, setKeyword, setSubmitFlg, alert, setAlert } = useContext(FeedContext);
+  const { loginUser } = useContext(FeedContext);
+  let history = useHistory();
 
   const searchImage = (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ const Header = () => {
     } else {
       setKeyword(keyword);
       setSubmitFlg(true);
+      history.push("/home"); //go back to feed
     }
   };
 
@@ -41,8 +44,9 @@ const Header = () => {
           <Link
             to="/login"
             className="linkItem"><FaUserCircle /></Link>
+          {/* Login user */}
+          {(Object.keys(loginUser).length !== 0) && (<p className="loginUser">Welcome! {loginUser.name}</p>)}
         </header>
-
 
         {/* Search Form */}
         <Form className="col searchForm" onSubmit={searchImage}>
