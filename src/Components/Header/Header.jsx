@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Form, Button } from 'react-bootstrap';
 import { FaSearch, FaHeart, FaPhotoVideo, FaUserCircle } from "react-icons/fa";
@@ -7,17 +7,15 @@ import FeedContext from '../../Contexts/FeedContext';
 
 const Header = () => {
 
-  const { keyword, setKeyword, submitFlg, setSubmitFlg } = useContext(FeedContext);
-  const [alert, setAlert] = useState("");
+  const { keyword, setKeyword, setSubmitFlg, alert, setAlert } = useContext(FeedContext);
 
   const searchImage = (e) => {
-    console.log(keyword, submitFlg);
     e.preventDefault();
 
-    console.log(e);
-
+    //input validation check
     if (e.target[0].value === "") {
       setAlert("Please enter search keyword");
+      setTimeout(() => { setAlert(""); }, 2000);
     } else {
       setKeyword(keyword);
       setSubmitFlg(true);
@@ -35,8 +33,8 @@ const Header = () => {
             </Link>
           </h1>
           <Link
-            to="/likes"
-            className="linkItem likes"><FaHeart /></Link>
+            to="/favorite"
+            className="linkItem favorite"><FaHeart /></Link>
           <Link
             to="/post"
             className="linkItem"><FaPhotoVideo /></Link>
@@ -46,14 +44,13 @@ const Header = () => {
         </header>
 
 
-
         {/* Search Form */}
-        <Form className="col-8 searchForm" onSubmit={searchImage}>
-          {alert ? (<p className="alert">{alert}</p>) : ""}
+        <Form className="col searchForm" onSubmit={searchImage}>
+          {alert && <p className="alert">{alert}</p>}
           <Form.Group>
             <Form.Control type="text" placeholder="Search..."
               onChange={e => setKeyword(e.target.value)}
-              onFocus={() => setKeyword("")}
+              onFocus={() => { setKeyword(""); setAlert(""); }}
               value={keyword} />
           </Form.Group>
           <Button type="submit" className="searchBtn">

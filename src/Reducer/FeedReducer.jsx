@@ -1,14 +1,15 @@
 const FeedReducer = (state, action) => {
 
-  console.log("inside reducer state is ", state);
-  console.log("action.payload is ", action.payload);
-
   switch (action.type) {
     case "FETCH_SUCCESS":
       return {
-        imageData: action.payload.hits,
-        favorite: [],
-        comments: []
+        ...state,
+        imageData: action.payload.hits
+      };
+    case "UPLOAD":
+      return {
+        ...state,
+        imageData: [{ ...action.payload[0], id: Date.now() }, ...state.imageData]
       };
     case "LIKE":
       return {
@@ -18,17 +19,12 @@ const FeedReducer = (state, action) => {
     case "ADD_FAVORITES":
       return {
         ...state,
-        favorite: [action.payload] //assigning after updated
-      };
-    case "UPLOAD":
-      return {
-        ...state,
-        imageData: [action.payload[0], ...state.imageData]
+        favorite: [action.payload, ...state.favorite]
       };
     case "ADD_COMMENTS":
       return {
         ...state,
-        comments: [action.payload, ...state.comments] //only one comment added
+        comments: [action.payload, ...state.comments]
       };
     default:
       throw Error("Action name not defined");
