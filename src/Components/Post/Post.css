@@ -1,56 +1,61 @@
 /* color palette*/
-.Form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  position: relative;
-  margin: 50px 300px;
-  border: solid 0.2rem #e6c4ce;
-  padding: 10px;
+.postContainer {
+  padding-top: 50px;
+  min-height: 80vh;
 }
 
-.Form .form-group {
-  margin: 20px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.Form .form-group .form-label {
-  margin-right: 100px;
-}
-
-.Form .form-group .form-control {
+.postContainer h1 {
   text-align: center;
-  border: 0.2rem solid #e6c4ce;
+  margin: 1rem 0;
 }
 
-.Form .form-group .form-control:focus {
+.postContainer .postForm {
+  width: 60%;
+  margin: auto;
+}
+
+.postContainer .postForm .form-group {
+  margin-bottom: 1rem;
+}
+
+.postContainer .postForm .form-group .form-control {
+  border: 0.1rem solid #dc3b31;
+  background-color: white;
+  outline: none;
+  -webkit-appearance: button;
+}
+
+.postContainer .postForm .form-group .form-control:focus {
   outline: none;
   border: none;
 }
 
-.Form .form-group .form-control:active {
+.postContainer .postForm .form-group .form-control:active {
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.Form .form-group .submit {
-  margin-top: 50px;
-  padding-left: 30px;
-  padding-right: 80px;
+.postContainer .postForm .form-group .form-control:-internal-autofill-selected {
+  background-color: transparent;
 }
 
-.Form .form-group .submit:hover, .Form .form-group .submit:focus {
+.postContainer .postForm .submit {
+  background-color: #f17f73;
+  border: none;
+  color: white;
+  margin-right: 1rem;
+}
+
+.postContainer .postForm .submit:hover, .postContainer .postForm .submit:focus {
+  background-color: #dc3b31;
+  color: white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: bold;
   cursor: pointer;
-  background-color: white;
   outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 /*# sourceMappingURL=Post.css.map */

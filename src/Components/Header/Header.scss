@@ -1,26 +1,30 @@
 @import "../../color";
 
 .navbar {
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
   height: 50px;
   padding: 0 1rem;
   border-bottom: 0.1rem groove lightgray;
   background-color: $light;
   /* header */
   header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:140px;
+    width:87.5%;
+    margin:0 auto;
     h1 {
       font-family: "Dancing Script", cursive;
+      width:70px;
+      margin-right:auto;
+      margin-left:0;
       a {
         text-decoration: none;
         color: $baseColor;
       }
     }
     .linkItem {
+      margin-left:40px;
       text-decoration: none;
       padding: 1rem;
       color: $baseColor;
@@ -28,11 +32,6 @@
     }
     .favorite {
       color: $accent2;
-    }
-    .loginUser {
-      margin-bottom: 0;
-      margin-left: 1rem;
-      font-size: 2rem;
     }
   }
   /* Alert */
@@ -43,45 +42,5 @@
     color: $accent2;
     font-weight: bold;
   }
-  /* search */
-  .searchForm {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-    margin-left: 7rem;
-    .form-group {
-      width: 100%;
-      .form-control {
-        border: 0.1rem solid $accent2;
-        background-color: $white;
-        outline: none;
-        -webkit-appearance: button;
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
-        &:active {
-          outline: none;
-          box-shadow: none;
-        }
-        &:-internal-autofill-selected {
-          background-color: transparent;
-        }
-      }
-    }
-    .searchBtn {
-      background-color: $accent1;
-      border: 0.1rem solid $accent1;
-      color: $white;
-      &:hover,
-      &:focus {
-        background-color: $accent2;
-        color: $white;
-        outline: none;
-        box-shadow: none;
-        font-weight: bold;
-      }
-    }
-  }
+  
 }

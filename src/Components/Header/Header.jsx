@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Navbar, Form, Button } from 'react-bootstrap';
 import { FaSearch, FaHeart, FaPhotoVideo, FaUserCircle } from "react-icons/fa";
+import {FiSend} from "react-icons/all";
 import "./Header.css";
 import FeedContext from '../../Contexts/FeedContext';
 
@@ -35,32 +36,24 @@ const Header = () => {
               to="/home">Ystagram
             </Link>
           </h1>
-          <Link
-            to="/favorite"
-            className="linkItem favorite"><FaHeart /></Link>
-          <Link
-            to="/post"
-            className="linkItem"><FaPhotoVideo /></Link>
-          <Link
-            to="/login"
-            className="linkItem"><FaUserCircle /></Link>
-          {/* Login user */}
-          {(Object.keys(loginUser).length !== 0) && (<p className="loginUser">Welcome! {loginUser.name}</p>)}
-        </header>
 
-        {/* Search Form */}
-        <Form className="col searchForm" onSubmit={searchImage}>
-          {alert && <p className="alert">{alert}</p>}
-          <Form.Group>
-            <Form.Control type="text" placeholder="Search..."
-              onChange={e => setKeyword(e.target.value)}
-              onFocus={() => { setKeyword(""); setAlert(""); }}
-              value={keyword} />
-          </Form.Group>
-          <Button type="submit" className="searchBtn">
-            <FaSearch />
-          </Button>
-        </Form>
+            <Link
+            to="/post"
+            className="linkItem"><FaPhotoVideo />
+            </Link>
+         
+            <Link
+            to="/favorite"
+            className="linkItem favorite"><FaHeart />
+            </Link>
+
+            <Link 
+            to = "/mail"
+            className="linkItem send"><FiSend /> 
+            </Link> 
+      
+        </header>
+        
       </Navbar>
     </>
   );

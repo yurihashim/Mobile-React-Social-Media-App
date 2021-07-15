@@ -16,15 +16,22 @@ import { PostProvider } from "./Contexts/PostContext";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
+import MediaQuery from "react-responsive"; 
+import BottomNav from "./Components/BottomNav/BottomNav"; 
+
+
 
 const App = () => {
   return (
     <>
+
       <FeedProvider>
         <PostProvider>
+        
           {/* React Router*/}
           <Router>
             {/* Scroll to Top */}
+            
             <ScrollToTop>
               {/* Header */}
               <Header />
@@ -37,10 +44,14 @@ const App = () => {
                 <Route exact path="/post" component={Post} />
                 <Route exact path="/login" component={Login} />
               </Switch>
+
+              <BottomNav/>
               {/* Footer */}
               <Footer />
             </ScrollToTop>
+
           </Router>
+
         </PostProvider>
       </FeedProvider>
     </>

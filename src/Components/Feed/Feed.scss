@@ -1,25 +1,31 @@
 @import "../../color";
 
 .feedContainer {
-  margin-top: 50px;
+  margin-top: 150px;
   padding-top: 2rem;
   min-height: 90vh;
+  
   .imgRow {
-    // width: 80%;
-    margin: auto;
-    grid-gap: 3rem;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    grid-gap: 10rem;
     .col {
       position: relative;
       padding: 0;
       box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+      margin-bottom:50px;
       .imagPanel {
-        // padding: 1rem;
+        object-fit: contain;
         img {
-          display: block;
-          margin: auto;
+          display:block;
+          margin:auto;
           width: 100%;
-          height: 150px;
+          height: 100%;
+          
         }
         &:hover .hoverText {
           display: block;
@@ -76,7 +82,7 @@
           transform: translateX(-50%);
           width: 100%;
         }
-      }
+     }
     }
   }
   /* Modal */

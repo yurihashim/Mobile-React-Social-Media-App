@@ -1,15 +1,5 @@
 /* color palette*/
 .navbar {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   height: 50px;
   padding: 0 1rem;
   border-bottom: 0.1rem groove lightgray;
@@ -23,17 +13,22 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 140px;
+  width: 87.5%;
+  margin: 0 auto;
 }
 
 .navbar header h1 {
   font-family: "Dancing Script", cursive;
+  width: 70px;
+  margin-right: auto;
+  margin-left: 0;
 }
 
 .navbar header h1 a {
@@ -42,6 +37,7 @@
 }
 
 .navbar header .linkItem {
+  margin-left: 40px;
   text-decoration: none;
   padding: 1rem;
   color: #363432;
@@ -63,63 +59,6 @@
   margin-bottom: 0;
   text-align: right;
   color: #dc3b31;
-  font-weight: bold;
-}
-
-.navbar .searchForm {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  margin-left: 7rem;
-}
-
-.navbar .searchForm .form-group {
-  width: 100%;
-}
-
-.navbar .searchForm .form-group .form-control {
-  border: 0.1rem solid #dc3b31;
-  background-color: white;
-  outline: none;
-  -webkit-appearance: button;
-}
-
-.navbar .searchForm .form-group .form-control:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.navbar .searchForm .form-group .form-control:active {
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.navbar .searchForm .form-group .form-control:-internal-autofill-selected {
-  background-color: transparent;
-}
-
-.navbar .searchForm .searchBtn {
-  background-color: #f17f73;
-  border: 0.1rem solid #f17f73;
-  color: white;
-}
-
-.navbar .searchForm .searchBtn:hover, .navbar .searchForm .searchBtn:focus {
-  background-color: #dc3b31;
-  color: white;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
   font-weight: bold;
 }
 /*# sourceMappingURL=Header.css.map */

@@ -103,7 +103,7 @@ const Feed = () => {
       {images ? (
         <FadeIn>
           <div className="feedContainer">
-            <Row className="imgRow row row-cols-5">
+            <div className="imgRow row row-cols-2">
               {images.imageData.map((elem, index) => (
                 <>
                   <Col className="col" key={index}>
@@ -129,7 +129,7 @@ const Feed = () => {
                   </Col>
                 </>
               ))}
-            </Row>
+            </div>
 
             {/* Modal */}
             {targetImage.imgObj && (
