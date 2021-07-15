@@ -45,6 +45,7 @@ const App = () => {
                 <Route exact path="/login" component={Login} />
               </Switch>
 
+              {/* BottomNav */}
               <BottomNav/>
               {/* Footer */}
               <Footer />
