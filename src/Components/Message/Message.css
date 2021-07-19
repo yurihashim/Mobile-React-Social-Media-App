@@ -1,0 +1,80 @@
+/* color palette*/
+.MessageContainer {
+  padding-top: 50px;
+  min-height: 80vh;
+}
+
+.MessageContainer h2 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.MessageContainer .errorMsg {
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 0;
+  color: #dc3b31;
+}
+
+.MessageContainer .MessageForm {
+  width: 60%;
+  margin: auto;
+}
+
+.MessageContainer .MessageForm .form-group {
+  margin-bottom: 1rem;
+}
+
+.MessageContainer .MessageForm .form-group .form-control {
+  border: 0.1rem solid #dc3b31;
+  background-color: white;
+  outline: none;
+  -webkit-appearance: button;
+}
+
+.MessageContainer .MessageForm .form-group .form-control:focus {
+  outline: none;
+  border: none;
+}
+
+.MessageContainer .MessageForm .form-group .form-control:active {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.MessageContainer .MessageForm .form-group .form-control:-internal-autofill-selected {
+  background-color: transparent;
+}
+
+.MessageContainer .MessageForm .form-group select {
+  margin-left: 15px;
+  padding: 7px;
+  border: 0.1rem solid #dc3b31;
+  background-color: white;
+  -webkit-appearance: button;
+}
+
+.MessageContainer .MessageForm .form-group select:-internal-autofill-selected {
+  background-color: transparent;
+}
+
+.MessageContainer .MessageForm .SebdBtn {
+  background-color: #f17f73;
+  border: none;
+  color: white;
+  margin-right: 1rem;
+}
+
+.MessageContainer .MessageForm .SebdBtn:hover, .MessageContainer .MessageForm .SebdBtn:focus {
+  background-color: #dc3b31;
+  color: white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+}
+/*# sourceMappingURL=Message.css.map */

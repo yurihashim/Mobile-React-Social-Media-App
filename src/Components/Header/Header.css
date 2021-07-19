@@ -6,7 +6,6 @@
   background-color: #e6c4ce;
   /* header */
   /* Alert */
-  /* search */
 }
 
 .navbar header {
@@ -46,12 +45,6 @@
 
 .navbar header .favorite {
   color: #dc3b31;
-}
-
-.navbar header .loginUser {
-  margin-bottom: 0;
-  margin-left: 1rem;
-  font-size: 2rem;
 }
 
 .navbar .alert {

@@ -48,7 +48,7 @@ const Header = () => {
             </Link>
 
             <Link 
-            to = "/mail"
+            to = "/message"
             className="linkItem send"><FiSend /> 
             </Link> 
       

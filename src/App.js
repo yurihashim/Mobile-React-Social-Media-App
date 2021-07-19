@@ -14,8 +14,9 @@ import ScrollToTop from "./Components/Router/ScrollToTop";
 import { FeedProvider } from "./Contexts/FeedContext";
 import { PostProvider } from "./Contexts/PostContext";
 import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
+//import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
+import Message from "./Components/Message/Message"; 
 import MediaQuery from "react-responsive"; 
 import BottomNav from "./Components/BottomNav/BottomNav"; 
 
@@ -43,12 +44,13 @@ const App = () => {
                 <Route exact path="/favorite" component={Favorite} />
                 <Route exact path="/post" component={Post} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/message" component={Message} />
               </Switch>
 
               {/* BottomNav */}
               <BottomNav/>
               {/* Footer */}
-              <Footer />
+              {/* <Footer /> */}
             </ScrollToTop>
 
           </Router>
